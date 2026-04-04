@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soham Kaje — Portfolio</title>
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #04080f;
+            --surface: #080f1c;
+            --surface2: #0c1628;
+            --border: #0e1e35;
+            --border2: #1a3155;
+            --muted: #1e4080;
+            --subtle: #5a83b8;
+            --text: #ddeeff;
+            --accent: #3b82f6;
+            --accent-bright: #60a5fa;
+            --accent-glow: rgba(59,130,246,0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Mono', monospace;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 100;
+            padding: 1.4rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(4,8,15,0.88);
+            backdrop-filter: blur(14px);
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--subtle);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent-bright); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 2.5rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(6rem, 18vw, 22rem);
+            color: transparent;
+            -webkit-text-stroke: 1px var(--border2);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.04em;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 35%; left: 20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.66rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            border: 1px solid var(--accent);
+            padding: 0.28rem 0.75rem;
+            margin-bottom: 2rem;
+            background: rgba(59,130,246,0.06);
+        }
+        .hero-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3.5rem, 9vw, 9rem);
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+        .hero-name em { font-style: italic; color: var(--accent-bright); }
+        .hero-desc {
+            font-size: 0.88rem;
+            color: var(--subtle);
+            max-width: 420px;
+            line-height: 1.85;
+            margin-bottom: 2.5rem;
+        }
+        .hero-links { display: flex; gap: 2rem; }
+        .hero-links a {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--subtle);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .hero-links a:hover { color: var(--accent-bright); }
+        .hero-scroll {
+            position: absolute;
+            right: 2.5rem; bottom: 4rem;
+            writing-mode: vertical-rl;
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .hero-scroll::after {
+            content: '';
+            display: block;
+            width: 1px; height: 60px;
+            background: var(--muted);
+        }
+
+        /* ── Section helpers ── */
+        section { padding: 8rem 2.5rem; }
+        .section-label {
+            font-size: 0.63rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px; height: 1px;
+            background: var(--border2);
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.4rem, 5.5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 4rem;
+        }
+
+        /* ── About ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1100px;
+        }
+        .about-text p {
+            color: var(--subtle);
+            font-size: 0.86rem;
+            line-height: 1.95;
+            margin-bottom: 1.2rem;
+        }
+        .about-text p strong { color: var(--text); font-weight: 500; }
+        .about-meta { display: flex; flex-direction: column; gap: 2.5rem; }
+        .meta-block h4 {
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .skill-tag {
+            font-size: 0.66rem;
+            letter-spacing: 0.05em;
+            color: var(--subtle);
+            border: 1px solid var(--border2);
+            padding: 0.22rem 0.6rem;
+            background: var(--surface);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent-bright); }
+        .edu-item {
+            border-top: 1px solid var(--border);
+            padding: 1.8rem 0;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+        }
+        .edu-item:last-child { border-bottom: 1px solid var(--border); }
+        .edu-school { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text); margin-bottom: 0.25rem; }
+        .edu-degree { font-size: 0.76rem; color: var(--subtle); margin-bottom: 0.4rem; }
+        .edu-gpa { font-size: 0.68rem; color: var(--accent-bright); letter-spacing: 0.07em; }
+        .edu-date { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); text-align: right; white-space: nowrap; }
+
+        /* ── Projects Grid ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            max-width: 1200px;
+        }
+        .project-card {
+            background: var(--bg);
+            padding: 2.2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .project-card:hover { background: var(--surface); }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 0;
+            background: var(--accent);
+            transition: height 0.4s ease;
+        }
+        .project-card:hover::before { height: 100%; }
+        .project-card:hover .project-title { color: var(--accent-bright); }
+        .project-number { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1.2rem; }
+        .project-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+            line-height: 1.15;
+            transition: color 0.2s;
+        }
+        .project-category { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+        .project-desc { font-size: 0.77rem; color: var(--subtle); line-height: 1.8; margin-bottom: 1.4rem; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .project-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            border: 1px solid var(--border2);
+            padding: 0.18rem 0.5rem;
+            background: var(--surface);
+        }
+        .project-open {
+            position: absolute;
+            bottom: 1.4rem; right: 1.6rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .project-card:hover .project-open { color: var(--accent-bright); }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4,8,15,0.93);
+            backdrop-filter: blur(10px);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: all; }
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            max-width: 780px; width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .modal-overlay.open .modal { transform: translateY(0); }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.8rem;
+            background: none;
+            border: 1px solid var(--border2);
+            color: var(--subtle);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .modal-close:hover { color: var(--accent-bright); border-color: var(--accent); }
+        .modal-num { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+        .modal-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.4rem;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+        .modal-cat { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+        .modal-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 2rem; }
+        .modal-section-head { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; margin-top: 1.8rem; }
+        .modal-body p { font-size: 0.83rem; color: var(--subtle); line-height: 1.9; margin-bottom: 0.9rem; }
+        .modal-body ul { list-style: none; margin-bottom: 1rem; }
+        .modal-body ul li {
+            font-size: 0.8rem; color: var(--subtle); line-height: 1.75;
+            padding-left: 1.2rem; position: relative; margin-bottom: 0.5rem;
+        }
+        .modal-body ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; }
+        .modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+        .modal-tag {
+            font-size: 0.64rem; letter-spacing: 0.06em;
+            color: var(--subtle); border: 1px solid var(--border2);
+            padding: 0.25rem 0.6rem; background: var(--surface2);
+        }
+        .modal-link {
+            display: inline-block;
+            font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--accent-bright);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            background: rgba(59,130,246,0.06);
+            transition: background 0.2s;
+        }
+        .modal-link:hover { background: rgba(59,130,246,0.14); }
+
+        /* ── Experience ── */
+        .exp-item {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 0;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+        }
+        .exp-item:last-child { border-bottom: 1px solid var(--border); }
+        .exp-meta h4 { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.7; }
+        .exp-meta .date { font-size: 0.63rem; color: var(--muted); margin-top: 0.5rem; }
+        .exp-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--text); margin-bottom: 0.25rem; }
+        .exp-company { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 1.2rem; }
+        .exp-content ul { list-style: none; }
+        .exp-content ul li {
+            font-size: 0.77rem; color: var(--subtle); line-height: 1.85;
+            padding-left: 1.2rem; position: relative; margin-bottom: 0.45rem;
+        }
+        .exp-content ul li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+
+        /* ── Music ── */
+        .music-intro {
+            font-size: 0.86rem;
+            color: var(--subtle);
+            max-width: 600px;
+            line-height: 1.9;
+            margin-bottom: 3.5rem;
+        }
+        .music-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+        }
+        .music-col-title {
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .music-col-title::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+        .video-card {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.25s;
+        }
+        .video-card:hover { border-color: var(--accent); }
+        .video-thumb {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: var(--surface2);
+            overflow: hidden;
+        }
+        .video-thumb iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .video-label {
+            padding: 0.8rem 1rem;
+            font-size: 0.7rem;
+            color: var(--subtle);
+            letter-spacing: 0.04em;
+        }
+
+        /* ── Contact ── */
+        .contact-inner { max-width: 700px; }
+        .contact-email {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 3.5vw, 3.2rem);
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            border-bottom: 1px solid var(--border2);
+            transition: color 0.2s, border-color 0.2s;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+        .contact-email:hover { color: var(--accent-bright); border-color: var(--accent); }
+        .contact-links { display: flex; gap: 2.5rem; }
+        .contact-links a {
+            font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--subtle); text-decoration: none; transition: color 0.2s;
+        }
+        .contact-links a:hover { color: var(--accent-bright); }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer p { font-size: 0.63rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+        /* ── Scroll animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            nav { padding: 1.1rem 1.4rem; }
+            .nav-links { display: none; }
+            section { padding: 5rem 1.4rem; }
+            .hero { padding: 0 1.4rem 3.5rem; }
+            .hero-bg-text { display: none; }
+            .about-grid, .projects-grid, .music-columns { grid-template-columns: 1fr; }
+            .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+            .modal { padding: 2rem 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+    <a href="#" class="nav-logo">Soham Kaje</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#music">Music</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+    <div class="hero-bg-text">SK</div>
+    <div class="hero-content">
+        <div class="hero-tag">Open to opportunities</div>
+        <h1 class="hero-name">Soham<br><em>Kaje</em></h1>
+        <p class="hero-desc">Master's student in Computer Science at UIUC. Building at the intersection of machine learning, full-stack development, and AI systems.</p>
+        <div class="hero-links">
+            <a href="https://github.com/sohamkaje" target="_blank">GitHub ↗</a>
+            <a href="https://linkedin.com/in/soham-kaje" target="_blank">LinkedIn ↗</a>
+            <a href="mailto:kaje.soham@gmail.com">Email ↗</a>
+        </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-grid">
+        <div class="about-text fade-up">
+            <p>I'm a Computer Science graduate student at the <strong>University of Illinois Urbana-Champaign</strong>, completing my Master's degree in just one year with a 3.75 GPA.</p>
+            <p>Before that, I earned my BS in Computer Science from <strong>UIC</strong> in three years, graduating Summa Cum Laude with a 4.0 GPA and Bell Honors distinction.</p>
+            <p>I'm passionate about applied machine learning, AI systems, and building products that solve real problems — from fraud detection pipelines to LLM optimization frameworks.</p>
+            <div style="margin-top: 3rem;">
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-school">UIUC</div>
+                        <div class="edu-degree">Professional Master's of Computer Science</div>
+                        <div class="edu-gpa">GPA 3.75 · Completing in 1 year</div>
+                    </div>
+                    <div class="edu-date">Aug 2025<br>May 2026</div>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-school">UIC</div>
+                        <div class="edu-degree">B.S. Computer Science · Summa Cum Laude · Bell Honors</div>
+                        <div class="edu-gpa">GPA 4.0 · Completed in 3 years</div>
+                    </div>
+                    <div class="edu-date">Aug 2022<br>May 2025</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-meta fade-up">
+            <div class="meta-block">
+                <h4>Languages</h4>
+                <div class="skills-list">
+                    <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Java</span><span class="skill-tag">C++</span>
+                    <span class="skill-tag">SQL</span><span class="skill-tag">Swift</span>
+                    <span class="skill-tag">Dart / Flutter</span><span class="skill-tag">F#</span>
+                    <span class="skill-tag">.NET</span>
+                </div>
+            </div>
+            <div class="meta-block">
+                <h4>Frameworks & Tools</h4>
+                <div class="skills-list">
+                    <span class="skill-tag">React.js</span><span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span>
+                    <span class="skill-tag">OpenAI GPT</span><span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Firebase</span><span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Databricks</span><span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Power Apps</span><span class="skill-tag">Git</span>
+                    <span class="skill-tag">Discord.js</span>
+                </div>
+            </div>
+            <div class="meta-block">
+                <h4>Coursework</h4>
+                <div class="skills-list">
+                    <span class="skill-tag">Applied ML</span><span class="skill-tag">Neural Networks</span>
+                    <span class="skill-tag">Transformers</span><span class="skill-tag">AI</span>
+                    <span class="skill-tag">Data Analytics</span><span class="skill-tag">Database Systems</span>
+                    <span class="skill-tag">IoT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+    <div class="section-label">02 — Projects</div>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="projects-grid">
+
+        <div class="project-card fade-up" onclick="openModal('cybench')">
+            <div class="project-number">001</div>
+            <div class="project-title">CyBench Optimization</div>
+            <div class="project-category">LLM Systems · Prompt Engineering</div>
+            <p class="project-desc">Improved a cybersecurity LLM benchmark, cutting token usage by ~47% via chain compression, dynamic memory, and feedback loops.</p>
+            <div class="project-tags">
+                <span class="project-tag">Python</span><span class="project-tag">LLM</span><span class="project-tag">Prompt Eng.</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('fraud')">
+            <div class="project-number">002</div>
+            <div class="project-title">Healthcare Fraud Detection</div>
+            <div class="project-category">Machine Learning · Capstone</div>
+            <p class="project-desc">ML pipeline detecting fraudulent Medicare claims using XGBoost and SHAP for explainable, transparent AI-driven fraud scoring.</p>
+            <div class="project-tags">
+                <span class="project-tag">Python</span><span class="project-tag">XGBoost</span><span class="project-tag">SHAP</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('meals')">
+            <div class="project-number">003</div>
+            <div class="project-title">Meals for Me</div>
+            <div class="project-category">Full-Stack · React</div>
+            <p class="project-desc">Led a 5-member team building a recipe discovery app with Firebase auth, realtime data sync, and the Edamam recipe API.</p>
+            <div class="project-tags">
+                <span class="project-tag">React.js</span><span class="project-tag">Firebase</span><span class="project-tag">REST API</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('deepblue')">
+            <div class="project-number">004</div>
+            <div class="project-title">Deepblue</div>
+            <div class="project-category">Hackathon · SparkHacks 2025</div>
+            <p class="project-desc">Ocean-focused full-stack web app built at SparkHacks 2025 — JavaScript and CSS with a Node.js dev server.</p>
+            <div class="project-tags">
+                <span class="project-tag">JavaScript</span><span class="project-tag">CSS</span><span class="project-tag">Node.js</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('archivebot')">
+            <div class="project-number">005</div>
+            <div class="project-title">Archive Bot</div>
+            <div class="project-category">Discord Bot · Community Tool</div>
+            <p class="project-desc">Discord.js v14 bot for the Laroi community with a modular command system, custom schemas, and event handlers.</p>
+            <div class="project-tags">
+                <span class="project-tag">JavaScript</span><span class="project-tag">Discord.js</span><span class="project-tag">Node.js</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('acm')">
+            <div class="project-number">006</div>
+            <div class="project-title">ACM Math Tools</div>
+            <div class="project-category">Leadership · Open Source</div>
+            <p class="project-desc">Suite of mathematical tools — graphing calculators, matrix tools, and logic programs — built as SIG Math Leader at UIC's ACM chapter.</p>
+            <div class="project-tags">
+                <span class="project-tag">Python</span><span class="project-tag">NumPy</span><span class="project-tag">C++</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── Experience ── -->
+<section id="experience">
+    <div class="section-label">03 — Experience</div>
+    <h2 class="section-title">Where I've worked</h2>
+    <div>
+        <div class="exp-item fade-up">
+            <div class="exp-meta">
+                <h4>Zurich North America<br>Schaumburg, IL</h4>
+                <div class="date">May – Aug 2024</div>
+            </div>
+            <div class="exp-content">
+                <div class="exp-title">IT Intern — Underwriting Enterprise Solutions</div>
+                <div class="exp-company">Zurich North America</div>
+                <ul>
+                    <li>Designed and developed a UM Onboarding Process Form agent using Microsoft Power Apps & Power Automate, following Agile methodology</li>
+                    <li>Integrated APIs including Microsoft Excel, SharePoint, and Office365Users to streamline data management</li>
+                    <li>Utilized Power Automate to automate onboarding workflows, generating emails to managers and tracking request status</li>
+                    <li>Built a feedback loop system using Microsoft SharePoint document storage</li>
+                </ul>
+            </div>
+        </div>
+        <div class="exp-item fade-up">
+            <div class="exp-meta">
+                <h4>UIC College of Engineering<br>Chicago, IL</h4>
+                <div class="date">May – Aug 2023</div>
+            </div>
+            <div class="exp-content">
+                <div class="exp-title">Machine Learning Research Intern</div>
+                <div class="exp-company">UIC College of Engineering</div>
+                <ul>
+                    <li>Developed a novel dataset for stance detection using Supervised Machine Learning, annotating input text-target pairs</li>
+                    <li>Utilized deep learning models to adversarially modify input text, improving dataset robustness</li>
+                    <li>Identified critical stance-indicative words within text to advance understanding of stance detection</li>
+                </ul>
+            </div>
+        </div>
+        <div class="exp-item fade-up">
+            <div class="exp-meta">
+                <h4>ACM @ UIC</h4>
+                <div class="date">Jan 2024 – May 2025</div>
+            </div>
+            <div class="exp-content">
+                <div class="exp-title">SIG Math Leader</div>
+                <div class="exp-company">Association of Computing Machinery — UIC</div>
+                <ul>
+                    <li>Managed a student team in the Special Interest Group for Math within the biggest CS club at UIC</li>
+                    <li>Led development of advanced mathematical tools including graphing calculators, matrix tools, and logic programs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Music ── -->
+<section id="music">
+    <div class="section-label">04 — Music</div>
+    <h2 class="section-title">Beyond the Code</h2>
+    <p class="music-intro">
+        Outside of software, I'm a dedicated Carnatic musician. I play the <strong style="color:var(--text)">Mridangam</strong> — a classical South Indian percussion instrument — and perform Carnatic vocal music. I've performed at concerts and events, bringing the same discipline and focus I apply to engineering to my musical practice.
+    </p>
+    <div class="music-columns">
+        <div>
+            <div class="music-col-title">Mridangam</div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/JLQ1dMzDuLY" title="Mridangam Performance 1" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-label">Mridangam Performance</div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/n357uKwihz8" title="Mridangam Performance 2" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-label">Mridangam Performance</div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/-VZJrQYMYLc" title="Mridangam Performance 3" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-label">Mridangam Performance</div>
+            </div>
+        </div>
+        <div>
+            <div class="music-col-title">Vocal</div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/s6U5d97W7o4" title="Carnatic Vocal Performance" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-label">Carnatic Vocal Performance</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+    <div class="section-label">05 — Contact</div>
+    <h2 class="section-title">Let's connect</h2>
+    <div class="contact-inner fade-up">
+        <p style="font-size:0.84rem; color: var(--subtle); margin-bottom: 2rem; max-width: 400px;">
+            Open to new opportunities, collaborations, and interesting conversations. Reach out anytime.
+        </p>
+        <a href="mailto:kaje.soham@gmail.com" class="contact-email">kaje.soham@gmail.com</a>
+        <div class="contact-links">
+            <a href="https://github.com/sohamkaje" target="_blank">GitHub ↗</a>
+            <a href="https://linkedin.com/in/soham-kaje" target="_blank">LinkedIn ↗</a>
+            <a href="tel:8477495797">+1 (847) 749-5797</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+    <p>© 2026 Soham Kaje</p>
+    <p>Built with Tailwind CSS · GitHub Pages</p>
+</footer>
+
+<!-- ════════════════════════════════
+     PROJECT MODALS
+════════════════════════════════ -->
+
+<div class="modal-overlay" id="modal-cybench">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('cybench')">Close ✕</button>
+        <div class="modal-num">Project 001</div>
+        <div class="modal-title">CyBench Optimization</div>
+        <div class="modal-cat">LLM Systems Engineering · Prompt Engineering · Oct – Dec 2025</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>CyBench is a cybersecurity benchmark designed to evaluate how well large language models reason about real-world exploitation scenarios and CTF-style tasks. I improved the efficiency and accuracy of this system through three distinct engineering efforts.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li><strong style="color:var(--text)">Chain Compression:</strong> Filtered trivial agent steps and delegated them to lightweight models, reducing total AI token usage by approximately 47% without sacrificing task quality.</li>
+                <li><strong style="color:var(--text)">Dynamic Memory:</strong> Implemented a persistent, JSON-backed memory system that injects cross-run execution context directly into LLM prompts, enabling the model to learn from prior attempts.</li>
+                <li><strong style="color:var(--text)">Feedback Loop:</strong> Logged failed actions as counterexamples and fed them back into subsequent runs, improving subtask completion rates and iteration efficiency.</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Python</span><span class="modal-tag">LLM / GPT</span>
+                <span class="modal-tag">Prompt Engineering</span><span class="modal-tag">JSON</span>
+                <span class="modal-tag">Cybersecurity</span>
+            </div>
+            <a href="https://github.com/sohamkaje/CyBench-Optimized" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-fraud">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('fraud')">Close ✕</button>
+        <div class="modal-num">Project 002</div>
+        <div class="modal-title">Healthcare Fraud Detection</div>
+        <div class="modal-cat">Machine Learning · Capstone Project · Jan – Apr 2025</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>Built a machine learning pipeline to detect fraudulent Medicare claims by analyzing complex patterns across inpatient, outpatient, and beneficiary data. The goal was an explainable AI system that could both flag fraud and provide transparent reasoning.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Implemented anomaly detection to identify behavioral patterns indicative of healthcare insurance fraud</li>
+                <li>Developed an AI-driven fraud risk scoring system using <strong style="color:var(--text)">XGBoost</strong> for high-accuracy predictions</li>
+                <li>Integrated <strong style="color:var(--text)">SHAP</strong> for transparent, interpretable fraud detection and explainable AI output</li>
+                <li>Reduced operational costs and improved resource allocation by enabling targeted investigation of high-risk claims</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Python</span><span class="modal-tag">XGBoost</span>
+                <span class="modal-tag">SHAP</span><span class="modal-tag">Scikit-learn</span>
+                <span class="modal-tag">Pandas</span><span class="modal-tag">Anomaly Detection</span>
+            </div>
+            <a href="https://github.com/sohamkaje/Healthcare-Insurance-Fraud-Detection" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-meals">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('meals')">Close ✕</button>
+        <div class="modal-num">Project 003</div>
+        <div class="modal-title">Meals for Me</div>
+        <div class="modal-cat">Hackathon · Full-Stack · React.js · Feb 2024</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A responsive recipe discovery application that helps users find meals based on their personal preferences. I led a 5-member team through the full development lifecycle, from planning and architecture to deployment.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Led a team of 5 developers, coordinating feature ownership and code review</li>
+                <li>Implemented <strong style="color:var(--text)">Google Firebase Authentication</strong> for secure sign-in and user account management</li>
+                <li>Used <strong style="color:var(--text)">Firebase Realtime Database</strong> to save, store, and sync user data across sessions</li>
+                <li>Integrated <strong style="color:var(--text)">Edamam's Recipe Search API</strong> to pull recipes matching user dietary preferences and restrictions</li>
+                <li>Built a fully responsive UI using React.js, HTML, and CSS</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">React.js</span><span class="modal-tag">Firebase Auth</span>
+                <span class="modal-tag">Firebase Realtime DB</span><span class="modal-tag">JavaScript</span>
+                <span class="modal-tag">HTML / CSS</span><span class="modal-tag">Edamam API</span>
+            </div>
+            <a href="https://github.com/sohamkaje/Meals-4-Me" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-deepblue">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('deepblue')">Close ✕</button>
+        <div class="modal-num">Project 004</div>
+        <div class="modal-title">Deepblue</div>
+        <div class="modal-cat">Hackathon · Full-Stack · React.js · Feb 2025</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>An ocean-focused web application built at SparkHacks 2025. Deepblue is built with JavaScript and CSS, with a Node.js backend, centered around ocean awareness and interactive data visualization.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Built a full-stack web application from scratch within a hackathon timeframe</li>
+                <li>Designed and developed the frontend using JavaScript and CSS with responsive layouts</li>
+                <li>Set up a Node.js dev server with npm for local development and rapid iteration</li>
+                <li>Focused on ocean-themed UI with data-driven content presentation</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">JavaScript</span><span class="modal-tag">CSS</span>
+                <span class="modal-tag">HTML</span><span class="modal-tag">Node.js</span><span class="modal-tag">npm</span>
+            </div>
+            <a href="https://github.com/sohamkaje/Deepblue" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-archivebot">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('archivebot')">Close ✕</button>
+        <div class="modal-num">Project 005</div>
+        <div class="modal-title">Archive Bot</div>
+        <div class="modal-cat">Discord Bot · Community Tool</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A feature-rich Discord bot built with Discord.js v14 for the Laroi community, providing a modular command system with custom data schemas and clean architecture.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Architected a modular bot using <strong style="color:var(--text)">Discord.js v14</strong> with clean separation between commands, functions, and schemas</li>
+                <li>Implemented a custom schema system (schemas.js) for structured data management across bot interactions</li>
+                <li>Built a reusable functions layer to keep command logic clean and maintainable</li>
+                <li>Maintained the project across 80+ commits, iterating on features based on community feedback</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">JavaScript</span><span class="modal-tag">Discord.js v14</span>
+                <span class="modal-tag">Node.js</span><span class="modal-tag">npm</span>
+            </div>
+            <a href="https://github.com/sohamkaje/archive-bot" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-acm">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('acm')">Close ✕</button>
+        <div class="modal-num">Project 006</div>
+        <div class="modal-title">ACM Math Tools</div>
+        <div class="modal-cat">Leadership · Open Source · Jan 2024 – May 2025</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>As SIG Math Leader at UIC's ACM chapter (the biggest CS club at UIC), I managed a team of students and led the development of a suite of advanced mathematical tools spanning calculus, linear algebra, and discrete math.</p>
+            <div class="modal-section-head">Tools Built</div>
+            <ul>
+                <li><strong style="color:var(--text)">Integral & Riemann Sum Graphing Calculator</strong> — Python tool using NumPy and Matplotlib for interactive calculus visualization</li>
+                <li><strong style="color:var(--text)">Reduced Row Echelon Matrix Calculator</strong> — C++ implementation of Gaussian elimination for linear algebra operations</li>
+                <li><strong style="color:var(--text)">Discrete Math Truth Table Logic Program</strong> — Boolean expression evaluator and truth table generator</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Python</span><span class="modal-tag">NumPy</span>
+                <span class="modal-tag">Matplotlib</span><span class="modal-tag">C++</span>
+                <span class="modal-tag">Discrete Math</span>
+            </div>
+            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(id) {
+        document.getElementById('modal-' + id).classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+        document.getElementById('modal-' + id).classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.open').forEach(m => {
+                m.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+        el.style.transitionDelay = (i % 3) * 0.1 + 's';
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>
