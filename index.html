@@ -4,495 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soham Kaje — Portfolio</title>
+    
+    <!-- Tailwind CSS -->
     <link href="./dist/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #04080f;
-            --surface: #080f1c;
-            --surface2: #0c1628;
-            --border: #0e1e35;
-            --border2: #1a3155;
-            --muted: #1e4080;
-            --subtle: #5a83b8;
-            --text: #ddeeff;
-            --accent: #3b82f6;
-            --accent-bright: #60a5fa;
-            --accent-glow: rgba(59,130,246,0.15);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'DM Mono', monospace;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        /* ── Nav ── */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            z-index: 100;
-            padding: 1.4rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: rgba(4,8,15,0.88);
-            backdrop-filter: blur(14px);
-        }
-        .nav-logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.15rem;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a {
-            color: var(--subtle);
-            text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--accent-bright); }
-
-        /* ── Hero ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-end;
-            padding: 0 2.5rem 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-bg-text {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(6rem, 18vw, 22rem);
-            color: transparent;
-            -webkit-text-stroke: 1px var(--border2);
-            white-space: nowrap;
-            pointer-events: none;
-            user-select: none;
-            letter-spacing: -0.04em;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 35%; left: 20%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 900px; }
-        .hero-tag {
-            display: inline-block;
-            font-size: 0.66rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent-bright);
-            border: 1px solid var(--accent);
-            padding: 0.28rem 0.75rem;
-            margin-bottom: 2rem;
-            background: rgba(59,130,246,0.06);
-        }
-        .hero-name {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(3.5rem, 9vw, 9rem);
-            line-height: 0.92;
-            letter-spacing: -0.04em;
-            color: var(--text);
-            margin-bottom: 2rem;
-        }
-        .hero-name em { font-style: italic; color: var(--accent-bright); }
-        .hero-desc {
-            font-size: 0.88rem;
-            color: var(--subtle);
-            max-width: 420px;
-            line-height: 1.85;
-            margin-bottom: 2.5rem;
-        }
-        .hero-links { display: flex; gap: 2rem; }
-        .hero-links a {
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--subtle);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .hero-links a:hover { color: var(--accent-bright); }
-        .hero-scroll {
-            position: absolute;
-            right: 2.5rem; bottom: 4rem;
-            writing-mode: vertical-rl;
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .hero-scroll::after {
-            content: '';
-            display: block;
-            width: 1px; height: 60px;
-            background: var(--muted);
-        }
-
-        /* ── Section helpers ── */
-        section { padding: 8rem 2.5rem; }
-        .section-label {
-            font-size: 0.63rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .section-label::before {
-            content: '';
-            display: inline-block;
-            width: 20px; height: 1px;
-            background: var(--border2);
-        }
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.4rem, 5.5vw, 5rem);
-            line-height: 0.95;
-            letter-spacing: -0.03em;
-            color: var(--text);
-            margin-bottom: 4rem;
-        }
-
-        /* ── About ── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1100px;
-        }
-        .about-text p {
-            color: var(--subtle);
-            font-size: 0.86rem;
-            line-height: 1.95;
-            margin-bottom: 1.2rem;
-        }
-        .about-text p strong { color: var(--text); font-weight: 500; }
-        .about-meta { display: flex; flex-direction: column; gap: 2.5rem; }
-        .meta-block h4 {
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 0.75rem;
-        }
-        .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .skill-tag {
-            font-size: 0.66rem;
-            letter-spacing: 0.05em;
-            color: var(--subtle);
-            border: 1px solid var(--border2);
-            padding: 0.22rem 0.6rem;
-            background: var(--surface);
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .skill-tag:hover { border-color: var(--accent); color: var(--accent-bright); }
-        .edu-item {
-            border-top: 1px solid var(--border);
-            padding: 1.8rem 0;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 1rem;
-        }
-        .edu-item:last-child { border-bottom: 1px solid var(--border); }
-        .edu-school { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text); margin-bottom: 0.25rem; }
-        .edu-degree { font-size: 0.76rem; color: var(--subtle); margin-bottom: 0.4rem; }
-        .edu-gpa { font-size: 0.68rem; color: var(--accent-bright); letter-spacing: 0.07em; }
-        .edu-date { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); text-align: right; white-space: nowrap; }
-
-        /* ── Projects Grid ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            max-width: 1200px;
-        }
-        .project-card {
-            background: var(--bg);
-            padding: 2.2rem;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .project-card:hover { background: var(--surface); }
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 3px; height: 0;
-            background: var(--accent);
-            transition: height 0.4s ease;
-        }
-        .project-card:hover::before { height: 100%; }
-        .project-card:hover .project-title { color: var(--accent-bright); }
-        .project-number { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1.2rem; }
-        .project-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 0.4rem;
-            line-height: 1.15;
-            transition: color 0.2s;
-        }
-        .project-category { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-        .project-desc { font-size: 0.77rem; color: var(--subtle); line-height: 1.8; margin-bottom: 1.4rem; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-        .project-tag {
-            font-size: 0.6rem;
-            letter-spacing: 0.05em;
-            color: var(--muted);
-            border: 1px solid var(--border2);
-            padding: 0.18rem 0.5rem;
-            background: var(--surface);
-        }
-        .project-open {
-            position: absolute;
-            bottom: 1.4rem; right: 1.6rem;
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--muted);
-            transition: color 0.2s;
-        }
-        .project-card:hover .project-open { color: var(--accent-bright); }
-
-        /* ── Modal ── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(4,8,15,0.93);
-            backdrop-filter: blur(10px);
-            z-index: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .modal-overlay.open { opacity: 1; pointer-events: all; }
-        .modal {
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            max-width: 780px; width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            padding: 3rem;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s;
-        }
-        .modal-overlay.open .modal { transform: translateY(0); }
-        .modal-close {
-            position: absolute;
-            top: 1.5rem; right: 1.8rem;
-            background: none;
-            border: 1px solid var(--border2);
-            color: var(--subtle);
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.3rem 0.7rem;
-            cursor: pointer;
-            letter-spacing: 0.1em;
-            transition: color 0.2s, border-color 0.2s;
-        }
-        .modal-close:hover { color: var(--accent-bright); border-color: var(--accent); }
-        .modal-num { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-        .modal-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.4rem;
-            letter-spacing: -0.03em;
-            color: var(--text);
-            margin-bottom: 0.4rem;
-        }
-        .modal-cat { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
-        .modal-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 2rem; }
-        .modal-section-head { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; margin-top: 1.8rem; }
-        .modal-body p { font-size: 0.83rem; color: var(--subtle); line-height: 1.9; margin-bottom: 0.9rem; }
-        .modal-body ul { list-style: none; margin-bottom: 1rem; }
-        .modal-body ul li {
-            font-size: 0.8rem; color: var(--subtle); line-height: 1.75;
-            padding-left: 1.2rem; position: relative; margin-bottom: 0.5rem;
-        }
-        .modal-body ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; }
-        .modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-        .modal-tag {
-            font-size: 0.64rem; letter-spacing: 0.06em;
-            color: var(--subtle); border: 1px solid var(--border2);
-            padding: 0.25rem 0.6rem; background: var(--surface2);
-        }
-        .modal-link {
-            display: inline-block;
-            font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--accent-bright);
-            border: 1px solid var(--accent);
-            padding: 0.5rem 1.2rem;
-            text-decoration: none;
-            background: rgba(59,130,246,0.06);
-            transition: background 0.2s;
-        }
-        .modal-link:hover { background: rgba(59,130,246,0.14); }
-
-        /* ── Experience ── */
-        .exp-item {
-            border-top: 1px solid var(--border);
-            padding: 2.5rem 0;
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 3rem;
-            max-width: 1000px;
-        }
-        .exp-item:last-child { border-bottom: 1px solid var(--border); }
-        .exp-meta h4 { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.7; }
-        .exp-meta .date { font-size: 0.63rem; color: var(--muted); margin-top: 0.5rem; }
-        .exp-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--text); margin-bottom: 0.25rem; }
-        .exp-company { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 1.2rem; }
-        .exp-content ul { list-style: none; }
-        .exp-content ul li {
-            font-size: 0.77rem; color: var(--subtle); line-height: 1.85;
-            padding-left: 1.2rem; position: relative; margin-bottom: 0.45rem;
-        }
-        .exp-content ul li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
-
-        /* ── Music ── */
-        .music-intro {
-            font-size: 0.86rem;
-            color: var(--subtle);
-            max-width: 600px;
-            line-height: 1.9;
-            margin-bottom: 3.5rem;
-        }
-        .music-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
-        }
-        .music-col-title {
-            font-size: 0.62rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .music-col-title::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-        .video-card {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: border-color 0.25s;
-        }
-        .video-card:hover { border-color: var(--accent); }
-        .video-thumb {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            background: var(--surface2);
-            overflow: hidden;
-        }
-        .video-thumb iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-        .video-label {
-            padding: 0.8rem 1rem;
-            font-size: 0.7rem;
-            color: var(--subtle);
-            letter-spacing: 0.04em;
-        }
-
-        /* ── Contact ── */
-        .contact-inner { max-width: 700px; }
-        .contact-email {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(1.6rem, 3.5vw, 3.2rem);
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            display: inline-block;
-            border-bottom: 1px solid var(--border2);
-            transition: color 0.2s, border-color 0.2s;
-            margin-bottom: 3rem;
-            line-height: 1.2;
-        }
-        .contact-email:hover { color: var(--accent-bright); border-color: var(--accent); }
-        .contact-links { display: flex; gap: 2.5rem; }
-        .contact-links a {
-            font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--subtle); text-decoration: none; transition: color 0.2s;
-        }
-        .contact-links a:hover { color: var(--accent-bright); }
-
-        /* ── Footer ── */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        footer p { font-size: 0.63rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
-
-        /* ── Scroll animations ── */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(22px);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-        }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        /* ── Mobile ── */
-        @media (max-width: 768px) {
-            nav { padding: 1.1rem 1.4rem; }
-            .nav-links { display: none; }
-            section { padding: 5rem 1.4rem; }
-            .hero { padding: 0 1.4rem 3.5rem; }
-            .hero-bg-text { display: none; }
-            .about-grid, .projects-grid, .music-columns { grid-template-columns: 1fr; }
-            .exp-item { grid-template-columns: 1fr; gap: 1rem; }
-            .modal { padding: 2rem 1.4rem; }
-        }
-    </style>
+    
+    <!-- Custom Styles -->
+    <link href="./css/main.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- ── Navigation ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════════════════ -->
 <nav>
     <a href="#" class="nav-logo">Soham Kaje</a>
     <ul class="nav-links">
@@ -504,12 +32,19 @@
     </ul>
 </nav>
 
-<!-- ── Hero ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
 <section class="hero">
     <div class="hero-bg-text">SK</div>
     <div class="hero-content">
-        <div class="hero-tag">Open to opportunities</div>
-        <h1 class="hero-name">Soham<br><em>Kaje</em></h1>
+        <div class="hero-profile-container">
+            <img src="./images/IMG_3851.jpg" alt="Soham Kaje" class="hero-profile-image" data-placeholder="Profile">
+            <div>
+                <div class="hero-tag">Open to opportunities</div>
+                <h1 class="hero-name">Soham<br><em>Kaje</em></h1>
+            </div>
+        </div>
         <p class="hero-desc">Master's student in Computer Science at UIUC. Building at the intersection of machine learning, full-stack development, and AI systems.</p>
         <div class="hero-links">
             <a href="https://github.com/sohamkaje" target="_blank">GitHub ↗</a>
@@ -520,14 +55,16 @@
     <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- ── About ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════════ -->
 <section id="about">
     <div class="section-label">01 — About</div>
     <h2 class="section-title">Who I am</h2>
     <div class="about-grid">
         <div class="about-text fade-up">
             <p>I'm a Computer Science graduate student at the <strong>University of Illinois Urbana-Champaign</strong>, completing my Master's degree in just one year with a 3.75 GPA.</p>
-            <p>Before that, I earned my BS in Computer Science from <strong>UIC</strong> in three years, graduating Summa Cum Laude with a 4.0 GPA and Bell Honors distinction.</p>
+            <p>Before that, I earned my BS in Computer Science from <strong>UIC</strong> in three years, graduating Summa Cum Laude with a 4.0 GPA and Bell Honors distinction. I was also part of the <strong>UIC Honors College</strong>, where I completed 45+ hours of volunteering and a capstone research project in machine learning.</p>
             <p>I'm passionate about applied machine learning, AI systems, and building products that solve real problems — from fraud detection pipelines to LLM optimization frameworks.</p>
             <div style="margin-top: 3rem;">
                 <div class="edu-item">
@@ -545,6 +82,14 @@
                         <div class="edu-gpa">GPA 4.0 · Completed in 3 years</div>
                     </div>
                     <div class="edu-date">Aug 2022<br>May 2025</div>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-school">UIC Honors College</div>
+                        <div class="edu-degree">45+ hours of community service · Capstone research project</div>
+                        <div class="edu-gpa">Machine Learning Research Focus</div>
+                    </div>
+                    <div class="edu-date">Fall 2023<br>Spring 2025</div>
                 </div>
             </div>
         </div>
@@ -568,7 +113,7 @@
                     <span class="skill-tag">Firebase</span><span class="skill-tag">MySQL</span>
                     <span class="skill-tag">Databricks</span><span class="skill-tag">Azure</span>
                     <span class="skill-tag">Power Apps</span><span class="skill-tag">Git</span>
-                    <span class="skill-tag">Discord.js</span>
+                    <span class="skill-tag">Discord.js</span><span class="skill-tag">MongoDB</span>
                 </div>
             </div>
             <div class="meta-block">
@@ -584,13 +129,16 @@
     </div>
 </section>
 
-<!-- ── Projects ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════════════════════════════ -->
 <section id="projects">
     <div class="section-label">02 — Projects</div>
     <h2 class="section-title">Selected Work</h2>
     <div class="projects-grid">
 
         <div class="project-card fade-up" onclick="openModal('cybench')">
+            <img src="./images/projects/cybench.jpg" alt="CyBench Project" class="project-image" data-placeholder="CyBench Screenshot">
             <div class="project-number">001</div>
             <div class="project-title">CyBench Optimization</div>
             <div class="project-category">LLM Systems · Prompt Engineering</div>
@@ -602,6 +150,7 @@
         </div>
 
         <div class="project-card fade-up" onclick="openModal('fraud')">
+            <img src="./images/projects/fraud-detection.jpg" alt="Fraud Detection" class="project-image" data-placeholder="Fraud Detection">
             <div class="project-number">002</div>
             <div class="project-title">Healthcare Fraud Detection</div>
             <div class="project-category">Machine Learning · Capstone</div>
@@ -613,6 +162,7 @@
         </div>
 
         <div class="project-card fade-up" onclick="openModal('meals')">
+            <img src="./images/projects/meals-for-me.jpg" alt="Meals for Me" class="project-image" data-placeholder="Meals for Me">
             <div class="project-number">003</div>
             <div class="project-title">Meals for Me</div>
             <div class="project-category">Full-Stack · React</div>
@@ -623,8 +173,45 @@
             <span class="project-open">View details →</span>
         </div>
 
-        <div class="project-card fade-up" onclick="openModal('deepblue')">
+        <div class="project-card fade-up" onclick="openModal('messenger')">
+            <img src="./images/projects/messenger-app.jpg" alt="Messenger App" class="project-image" data-placeholder="Messenger App">
             <div class="project-number">004</div>
+            <div class="project-title">Java Messenger App</div>
+            <div class="project-category">Client-Server · Networking</div>
+            <p class="project-desc">Multi-threaded client-server messaging application with JavaFX GUI, socket programming, and real-time message delivery.</p>
+            <div class="project-tags">
+                <span class="project-tag">Java</span><span class="project-tag">JavaFX</span><span class="project-tag">Sockets</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('dijkstra')">
+            <img src="./images/projects/dijkstra-maps.jpg" alt="Dijkstra Maps" class="project-image" data-placeholder="UIC Maps">
+            <div class="project-number">005</div>
+            <div class="project-title">UIC Campus Pathfinder</div>
+            <div class="project-category">Algorithms · Data Structures</div>
+            <p class="project-desc">Custom Dijkstra's algorithm implementation finding shortest paths between UIC buildings using OpenStreetMap data.</p>
+            <div class="project-tags">
+                <span class="project-tag">C++</span><span class="project-tag">Dijkstra</span><span class="project-tag">OSM</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('archivebot')">
+            <img src="./images/projects/archive-bot.jpg" alt="Archive Bot" class="project-image" data-placeholder="Archive Bot">
+            <div class="project-number">006</div>
+            <div class="project-title">Archive Bot</div>
+            <div class="project-category">Discord Bot · Community Tool</div>
+            <p class="project-desc">Multifunctional Discord bot with API integrations (Last.FM, OpenAI), web scraping, and MongoDB for personalized user data.</p>
+            <div class="project-tags">
+                <span class="project-tag">JavaScript</span><span class="project-tag">Discord.js</span><span class="project-tag">MongoDB</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
+        <div class="project-card fade-up" onclick="openModal('deepblue')">
+            <img src="./images/projects/deepblue.jpg" alt="Deepblue" class="project-image" data-placeholder="Deepblue">
+            <div class="project-number">007</div>
             <div class="project-title">Deepblue</div>
             <div class="project-category">Hackathon · SparkHacks 2025</div>
             <p class="project-desc">Ocean-focused full-stack web app built at SparkHacks 2025 — JavaScript and CSS with a Node.js dev server.</p>
@@ -634,19 +221,21 @@
             <span class="project-open">View details →</span>
         </div>
 
-        <div class="project-card fade-up" onclick="openModal('archivebot')">
-            <div class="project-number">005</div>
-            <div class="project-title">Archive Bot</div>
-            <div class="project-category">Discord Bot · Community Tool</div>
-            <p class="project-desc">Discord.js v14 bot for the Laroi community with a modular command system, custom schemas, and event handlers.</p>
+        <div class="project-card fade-up" onclick="openModal('mridangam')">
+            <img src="./images/projects/mridangam-site.jpg" alt="Mridangam Website" class="project-image" data-placeholder="Mridangam Site">
+            <div class="project-number">008</div>
+            <div class="project-title">Mridangam Performance Site</div>
+            <div class="project-category">Web Development · In Progress</div>
+            <p class="project-desc">Personal website showcasing Carnatic music performances, upcoming concerts, and teaching philosophy — currently in development.</p>
             <div class="project-tags">
-                <span class="project-tag">JavaScript</span><span class="project-tag">Discord.js</span><span class="project-tag">Node.js</span>
+                <span class="project-tag">React</span><span class="project-tag">CSS</span><span class="project-tag">Firebase</span>
             </div>
             <span class="project-open">View details →</span>
         </div>
 
         <div class="project-card fade-up" onclick="openModal('acm')">
-            <div class="project-number">006</div>
+            <img src="./images/projects/acm-math.jpg" alt="ACM Math Tools" class="project-image" data-placeholder="ACM Math Tools">
+            <div class="project-number">009</div>
             <div class="project-title">ACM Math Tools</div>
             <div class="project-category">Leadership · Open Source</div>
             <p class="project-desc">Suite of mathematical tools — graphing calculators, matrix tools, and logic programs — built as SIG Math Leader at UIC's ACM chapter.</p>
@@ -659,7 +248,9 @@
     </div>
 </section>
 
-<!-- ── Experience ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     EXPERIENCE
+══════════════════════════════════════════════════════════════ -->
 <section id="experience">
     <div class="section-label">03 — Experience</div>
     <h2 class="section-title">Where I've worked</h2>
@@ -712,13 +303,45 @@
     </div>
 </section>
 
-<!-- ── Music ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     MUSIC
+══════════════════════════════════════════════════════════════ -->
 <section id="music">
     <div class="section-label">04 — Music</div>
     <h2 class="section-title">Beyond the Code</h2>
     <p class="music-intro">
-        Outside of software, I'm a dedicated Carnatic musician. I play the <strong style="color:var(--text)">Mridangam</strong> — a classical South Indian percussion instrument — and perform Carnatic vocal music. I've performed at concerts and events, bringing the same discipline and focus I apply to engineering to my musical practice.
+        Outside of software, I'm a dedicated Carnatic musician. I play the <strong style="color:var(--text)">Mridangam</strong> — a classical South Indian percussion instrument — and perform Carnatic vocal music. I've performed at concerts and events in <strong style="color:var(--text)">USA, Canada, and India</strong>, bringing the same discipline and focus I apply to engineering to my musical practice.
     </p>
+
+    <!-- Achievements Section -->
+    <div class="music-achievements fade-up">
+        <h3 class="music-section-title">Achievements & Recognition</h3>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="achievement-icon">🏆</div>
+                <div class="achievement-title">Concert Performances</div>
+                <div class="achievement-desc">Performed at multiple Carnatic music concerts across the Chicago area</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🎵</div>
+                <div class="achievement-title">Mridangam Proficiency</div>
+                <div class="achievement-desc">15+ years of training in South Indian classical percussion</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🎤</div>
+                <div class="achievement-title">Vocal Training</div>
+                <div class="achievement-desc">Trained in Carnatic vocal music with performances at cultural events</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">👥</div>
+                <div class="achievement-title">Community Engagement</div>
+                <div class="achievement-desc">Active participant in preserving and promoting South Indian classical arts</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Videos -->
+    <h3 class="music-section-title fade-up" style="margin-top: 4rem;">Performance Videos</h3>
     <div class="music-columns">
         <div>
             <div class="music-col-title">Mridangam</div>
@@ -753,7 +376,9 @@
     </div>
 </section>
 
-<!-- ── Contact ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════════════════ -->
 <section id="contact">
     <div class="section-label">05 — Contact</div>
     <h2 class="section-title">Let's connect</h2>
@@ -763,23 +388,39 @@
         </p>
         <a href="mailto:kaje.soham@gmail.com" class="contact-email">kaje.soham@gmail.com</a>
         <div class="contact-links">
-            <a href="https://github.com/sohamkaje" target="_blank">GitHub ↗</a>
-            <a href="https://linkedin.com/in/soham-kaje" target="_blank">LinkedIn ↗</a>
-            <a href="tel:8477495797">+1 (847) 749-5797</a>
+            <a href="https://github.com/sohamkaje" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="https://linkedin.com/in/soham-kaje" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://www.instagram.com/sohamkaje_/" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Instagram
+            </a>
+            <a href="tel:8477495797">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+                +1 (847) 749-5797
+            </a>
         </div>
     </div>
 </section>
 
-<!-- ── Footer ── -->
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
 <footer>
     <p>© 2026 Soham Kaje</p>
     <p>Built with Tailwind CSS · GitHub Pages</p>
 </footer>
 
-<!-- ════════════════════════════════
-     PROJECT MODALS
-════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════════ -->
 
+<!-- Modal: CyBench -->
 <div class="modal-overlay" id="modal-cybench">
     <div class="modal">
         <button class="modal-close" onclick="closeModal('cybench')">Close ✕</button>
@@ -807,6 +448,7 @@
     </div>
 </div>
 
+<!-- Modal: Fraud Detection -->
 <div class="modal-overlay" id="modal-fraud">
     <div class="modal">
         <button class="modal-close" onclick="closeModal('fraud')">Close ✕</button>
@@ -835,6 +477,7 @@
     </div>
 </div>
 
+<!-- Modal: Meals for Me -->
 <div class="modal-overlay" id="modal-meals">
     <div class="modal">
         <button class="modal-close" onclick="closeModal('meals')">Close ✕</button>
@@ -864,12 +507,105 @@
     </div>
 </div>
 
+<!-- Modal: Messenger App -->
+<div class="modal-overlay" id="modal-messenger">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('messenger')">Close ✕</button>
+        <div class="modal-num">Project 004</div>
+        <div class="modal-title">Java Messenger App</div>
+        <div class="modal-cat">Client-Server Architecture · Networking · Spring 2024</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A real-time messaging application built with Java featuring a client-server architecture. Implemented socket programming for network communication and JavaFX for an intuitive graphical user interface.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Designed and implemented a multi-threaded server capable of handling concurrent client connections</li>
+                <li>Built a JavaFX-based GUI client with real-time message updates and user-friendly interface</li>
+                <li>Implemented TCP socket programming for reliable message delivery between clients</li>
+                <li>Created a custom message protocol for client-server communication</li>
+                <li>Added features including user authentication, message history, and connection status indicators</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Java</span><span class="modal-tag">JavaFX</span>
+                <span class="modal-tag">Socket Programming</span><span class="modal-tag">Multi-threading</span>
+                <span class="modal-tag">TCP/IP</span>
+            </div>
+            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Dijkstra Maps -->
+<div class="modal-overlay" id="modal-dijkstra">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('dijkstra')">Close ✕</button>
+        <div class="modal-num">Project 005</div>
+        <div class="modal-title">UIC Campus Pathfinder</div>
+        <div class="modal-cat">Algorithms · Data Structures · C++ · Nov 2023</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>An efficient campus navigation system that finds the shortest path between UIC buildings using real OpenStreetMap data and Dijkstra's shortest path algorithm.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Coded an <strong style="color:var(--text)">adjacency matrix</strong> to store information regarding building locations in hashmaps for O(1) time complexity</li>
+                <li>Used <strong style="color:var(--text)">.osm files</strong> as a data source to parse real-world geographic data from OpenStreetMap</li>
+                <li>Implemented a custom <strong style="color:var(--text)">Dijkstra shortest path algorithm</strong> optimized for campus-scale pathfinding</li>
+                <li>Used a <strong style="color:var(--text)">stack data structure</strong> to display the complete shortest path from one location to another</li>
+                <li>Optimized for performance with efficient data structures and algorithm implementation</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">C++</span><span class="modal-tag">Dijkstra's Algorithm</span>
+                <span class="modal-tag">OpenStreetMap</span><span class="modal-tag">Graph Theory</span>
+                <span class="modal-tag">Data Structures</span>
+            </div>
+            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Archive Bot -->
+<div class="modal-overlay" id="modal-archivebot">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('archivebot')">Close ✕</button>
+        <div class="modal-num">Project 006</div>
+        <div class="modal-title">Archive Bot</div>
+        <div class="modal-cat">Discord Bot · Community Tool · May – Aug 2023</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A multifunctional Discord bot built with Discord.js v14 for the Laroi community, providing a modular command system with API integrations, web scraping, and persistent data storage.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Developed a multifunctional Discord bot using the <strong style="color:var(--text)">Discord.js library</strong>, enhancing server functionality and user experience</li>
+                <li>Integrated external APIs including <strong style="color:var(--text)">Last.FM</strong> and <strong style="color:var(--text)">OpenAI</strong> to provide real-time music data and AI-powered features</li>
+                <li>Implemented <strong style="color:var(--text)">web scraping</strong> using Axios from npm to fetch and display dynamic content</li>
+                <li>Utilized <strong style="color:var(--text)">MongoDB</strong> to store user-specific data, enabling personalized features and preferences</li>
+                <li>Built a modular command system with custom schemas for clean, maintainable code architecture</li>
+                <li>Maintained across 80+ commits with continuous feature additions based on community feedback</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">JavaScript</span><span class="modal-tag">Discord.js v14</span>
+                <span class="modal-tag">MongoDB</span><span class="modal-tag">Last.FM API</span>
+                <span class="modal-tag">OpenAI API</span><span class="modal-tag">Axios</span>
+                <span class="modal-tag">Node.js</span>
+            </div>
+            <a href="https://github.com/sohamkaje/archive-bot" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Deepblue -->
 <div class="modal-overlay" id="modal-deepblue">
     <div class="modal">
         <button class="modal-close" onclick="closeModal('deepblue')">Close ✕</button>
-        <div class="modal-num">Project 004</div>
+        <div class="modal-num">Project 007</div>
         <div class="modal-title">Deepblue</div>
-        <div class="modal-cat">Hackathon · Full-Stack · React.js · Feb 2025</div>
+        <div class="modal-cat">Hackathon · Full-Stack · SparkHacks 2025 · Feb 2025</div>
         <div class="modal-divider"></div>
         <div class="modal-body">
             <div class="modal-section-head">Overview</div>
@@ -891,37 +627,44 @@
     </div>
 </div>
 
-<div class="modal-overlay" id="modal-archivebot">
+<!-- Modal: Mridangam Website -->
+<div class="modal-overlay" id="modal-mridangam">
     <div class="modal">
-        <button class="modal-close" onclick="closeModal('archivebot')">Close ✕</button>
-        <div class="modal-num">Project 005</div>
-        <div class="modal-title">Archive Bot</div>
-        <div class="modal-cat">Discord Bot · Community Tool</div>
+        <button class="modal-close" onclick="closeModal('mridangam')">Close ✕</button>
+        <div class="modal-num">Project 008</div>
+        <div class="modal-title">Mridangam Performance Website</div>
+        <div class="modal-cat">Web Development · React · In Progress</div>
         <div class="modal-divider"></div>
         <div class="modal-body">
             <div class="modal-section-head">Overview</div>
-            <p>A feature-rich Discord bot built with Discord.js v14 for the Laroi community, providing a modular command system with custom data schemas and clean architecture.</p>
-            <div class="modal-section-head">What I Built</div>
+            <p>A personal website dedicated to showcasing my Carnatic music journey, performances, and teaching philosophy. Currently in active development with plans for launch in 2026.</p>
+            <div class="modal-section-head">Planned Features</div>
             <ul>
-                <li>Architected a modular bot using <strong style="color:var(--text)">Discord.js v14</strong> with clean separation between commands, functions, and schemas</li>
-                <li>Implemented a custom schema system (schemas.js) for structured data management across bot interactions</li>
-                <li>Built a reusable functions layer to keep command logic clean and maintainable</li>
-                <li>Maintained the project across 80+ commits, iterating on features based on community feedback</li>
+                <li>Performance gallery with video embeds and audio samples from concerts and events</li>
+                <li>Upcoming concert schedule and event calendar</li>
+                <li>Teaching philosophy and approach to Carnatic music education</li>
+                <li>Blog section for insights on mridangam techniques and Carnatic music theory</li>
+                <li>Contact form for booking inquiries and collaboration opportunities</li>
+                <li>Integration with Firebase for dynamic content management</li>
             </ul>
             <div class="modal-section-head">Technologies</div>
             <div class="modal-tags">
-                <span class="modal-tag">JavaScript</span><span class="modal-tag">Discord.js v14</span>
-                <span class="modal-tag">Node.js</span><span class="modal-tag">npm</span>
+                <span class="modal-tag">React</span><span class="modal-tag">CSS</span>
+                <span class="modal-tag">Firebase</span><span class="modal-tag">JavaScript</span>
+                <span class="modal-tag">Responsive Design</span>
             </div>
-            <a href="https://github.com/sohamkaje/archive-bot" target="_blank" class="modal-link">View on GitHub ↗</a>
+            <div style="padding: 1rem; background: var(--surface2); border-left: 3px solid var(--accent); margin-top: 1.5rem;">
+                <p style="font-size: 0.75rem; color: var(--subtle); margin: 0;">🚧 This project is currently in development. Check back soon for updates!</p>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Modal: ACM Math Tools -->
 <div class="modal-overlay" id="modal-acm">
     <div class="modal">
         <button class="modal-close" onclick="closeModal('acm')">Close ✕</button>
-        <div class="modal-num">Project 006</div>
+        <div class="modal-num">Project 009</div>
         <div class="modal-title">ACM Math Tools</div>
         <div class="modal-cat">Leadership · Open Source · Jan 2024 – May 2025</div>
         <div class="modal-divider"></div>
@@ -945,42 +688,10 @@
     </div>
 </div>
 
-<script>
-    function openModal(id) {
-        document.getElementById('modal-' + id).classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModal(id) {
-        document.getElementById('modal-' + id).classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        });
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-overlay.open').forEach(m => {
-                m.classList.remove('open');
-                document.body.style.overflow = '';
-            });
-        }
-    });
+<!-- JavaScript Files -->
+<script src="./js/modal.js"></script>
+<script src="./js/animations.js"></script>
+<script src="./js/placeholders.js"></script>
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.fade-up').forEach((el, i) => {
-        el.style.transitionDelay = (i % 3) * 0.1 + 's';
-        observer.observe(el);
-    });
-</script>
 </body>
 </html>
