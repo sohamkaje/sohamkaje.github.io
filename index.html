@@ -245,6 +245,18 @@
             <span class="project-open">View details →</span>
         </div>
 
+        <div class="project-card fade-up" onclick="openModal('insurance')">
+            <img src="./images/projects/insurance-api.jpg" alt="Insurance API" class="project-image" data-placeholder="Insurance API">
+            <div class="project-number">010</div>
+            <div class="project-title">Insurance Policy API</div>
+            <div class="project-category">Java · Spring Boot · REST API</div>
+            <p class="project-desc">Production-style RESTful API for full lifecycle management of insurance policies across 10+ endpoints with layered MVC architecture.</p>
+            <div class="project-tags">
+                <span class="project-tag">Java</span><span class="project-tag">Spring Boot</span><span class="project-tag">Spring Data JPA</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
     </div>
 </section>
 
@@ -412,7 +424,7 @@
      FOOTER
 ══════════════════════════════════════════════════════════════ -->
 <footer>
-    <p>© 2026 Soham Kaje</p>
+    <p>Soham Kaje</p>
     <p>Built with Tailwind CSS · GitHub Pages</p>
 </footer>
 
@@ -687,6 +699,37 @@
         </div>
     </div>
 </div>
+
+<!-- Modal: Insurance Policy Management API -->
+<div class="modal-overlay" id="modal-insurance">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('insurance')">Close ✕</button>
+        <div class="modal-num">Project 010</div>
+        <div class="modal-title">Insurance Policy Management API</div>
+        <div class="modal-cat">Java · Spring Boot · Maven · REST API · April 2026</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A production-style RESTful API built with Java 17 and Spring Boot 3.2 for full lifecycle management of insurance policies. Covers Auto, Home, Health, Life, and Business policy types across 10+ endpoints, following industry-standard layered architecture patterns.</p>
+            <div class="modal-section-head">What I Built</div>
+            <ul>
+                <li>Designed <strong style="color:var(--text)">10+ RESTful endpoints</strong> supporting full CRUD operations with proper HTTP status codes and REST best practices</li>
+                <li>Applied <strong style="color:var(--text)">layered MVC architecture</strong> (Controller → Service → Repository) using Spring Data JPA, constructor-based dependency injection, and <code>@Transactional</code> service methods for data consistency</li>
+                <li>Designed centralized exception handling via <strong style="color:var(--text)"><code>@ControllerAdvice</code></strong> with custom exceptions (<code>PolicyNotFoundException</code>, <code>DuplicatePolicyException</code>) for clean, consistent error responses</li>
+                <li>Enforced input validation using <strong style="color:var(--text)">Bean Validation</strong> (<code>@Valid</code>, <code>@NotNull</code>) and integrated <strong style="color:var(--text)">OpenAPI/Swagger UI</strong> via SpringDoc for interactive API documentation</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Java 17</span><span class="modal-tag">Spring Boot 3.2</span>
+                <span class="modal-tag">Spring Data JPA</span><span class="modal-tag">H2 Database</span>
+                <span class="modal-tag">Maven</span><span class="modal-tag">Bean Validation</span>
+                <span class="modal-tag">OpenAPI / Swagger UI</span>
+            </div>
+            <a href="https://github.com/sohamkaje/Insurance-API" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
 
 <!-- JavaScript Files -->
 <script src="./js/modal.js"></script>
