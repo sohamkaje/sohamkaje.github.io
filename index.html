@@ -257,6 +257,18 @@
             <span class="project-open">View details →</span>
         </div>
 
+        <div class="project-card fade-up" onclick="openModal('timecapsule')">
+            <img src="./images/projects/time-capsule.jpg" alt="Time Capsule Game" class="project-image" data-placeholder="Time Capsule Game">
+            <div class="project-number">011</div>
+            <div class="project-title">Time Capsule</div>
+            <div class="project-category">Game Dev · Godot 4.2 · AI Assets</div>
+            <p class="project-desc">3D first-person puzzle game where you freeze physics objects mid-air to build platforms and collect artifacts in a museum — built in Godot 4.2 with AI-generated 3D models via Meshy.</p>
+            <div class="project-tags">
+                <span class="project-tag">Godot 4.2</span><span class="project-tag">GDScript</span><span class="project-tag">Meshy AI</span>
+            </div>
+            <span class="project-open">View details →</span>
+        </div>
+
     </div>
 </section>
 
@@ -726,6 +738,46 @@
                 <span class="modal-tag">OpenAPI / Swagger UI</span>
             </div>
             <a href="https://github.com/sohamkaje/Insurance-API" target="_blank" class="modal-link">View on GitHub ↗</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal: Time Capsule -->
+<div class="modal-overlay" id="modal-timecapsule">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('timecapsule')">Close ✕</button>
+        <div class="modal-num">Project 011</div>
+        <div class="modal-title">Time Capsule</div>
+        <div class="modal-cat">3D Puzzle Game · Godot 4.2 · GDScript · May 2026</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+            <div class="modal-section-head">Overview</div>
+            <p>A 3D first-person puzzle platformer built in Godot 4.2 for a graduate IoT & Game Dev course. Players explore a museum and must collect 5 artifacts within a 3-minute time limit, using a freeze ray mechanic to suspend physics objects mid-air and construct makeshift platforms to reach otherwise inaccessible areas.</p>
+            <div class="modal-section-head">Core Mechanics</div>
+            <ul>
+                <li><strong style="color:var(--text)">Freeze Ray System:</strong> Raycast-based mechanic that suspends RigidBody3D objects in mid-air for 10 seconds — up to 3 active freeze charges at a time, with per-object countdown timers and automatic unfreeze logic written in GDScript</li>
+                <li><strong style="color:var(--text)">First-Person Controller:</strong> Full WASD movement, mouse-look with clamped vertical rotation, jump with gravity, and smooth velocity falloff</li>
+                <li><strong style="color:var(--text)">Game State Management:</strong> Dedicated GameManager node handles 3-minute countdown, win/lose conditions, UI signals, and scene tree pause on game end</li>
+                <li><strong style="color:var(--text)">HUD System:</strong> Live timer with color-change warnings, freeze charge counter, artifact progress tracker, crosshair, and distinct win/lose overlay screens</li>
+                <li><strong style="color:var(--text)">AI-Generated 3D Assets:</strong> Museum artifacts and environment props created with Meshy AI (text-to-3D), exported as <code style="color:var(--accent-bright)">.glb</code> and imported directly into Godot</li>
+            </ul>
+            <div class="modal-section-head">Architecture</div>
+            <ul>
+                <li>7 GDScript files with clean separation: player controller, artifact logic, freeze orb pickups, freezable physics objects, game manager, UI manager, and menu</li>
+                <li>6 scene files (<code style="color:var(--accent-bright)">.tscn</code>) for player, artifact, freeze orb, physics object, main level, and HUD</li>
+                <li>Collision layer system — players on layer 1, freezable objects on layer 2; raycast mask scoped to layer 2 for precise object targeting</li>
+            </ul>
+            <div class="modal-section-head">Technologies</div>
+            <div class="modal-tags">
+                <span class="modal-tag">Godot 4.2</span>
+                <span class="modal-tag">GDScript</span>
+                <span class="modal-tag">3D / RigidBody3D</span>
+                <span class="modal-tag">RayCast3D</span>
+                <span class="modal-tag">Meshy AI</span>
+                <span class="modal-tag">.glb / 3D Models</span>
+                <span class="modal-tag">Game State Machine</span>
+            </div>
         </div>
     </div>
 </div>
