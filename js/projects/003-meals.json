@@ -1,0 +1,27 @@
+{
+  "id": "meals",
+  "number": "003",
+  "title": "Meals for Me",
+  "category": "Full-Stack · React",
+  "image": "./images/projects/meals-for-me.jpg",
+  "imagePlaceholder": "Meals for Me",
+  "description": "Led a 5-member team building a recipe discovery app with Firebase auth, realtime data sync, and the Edamam recipe API.",
+  "tags": ["React.js", "Firebase", "REST API"],
+  "github": "https://github.com/sohamkaje/Meals-4-Me",
+  "date": "Feb 2024",
+  "modalSubtitle": "Hackathon · Full-Stack · React.js · Feb 2024",
+  "overview": "A responsive recipe discovery application that helps users find meals based on their personal preferences. I led a 5-member team through the full development lifecycle, from planning and architecture to deployment.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Led a team of 5 developers, coordinating feature ownership and code review",
+        "Implemented <strong>Google Firebase Authentication</strong> for secure sign-in and user account management",
+        "Used <strong>Firebase Realtime Database</strong> to save, store, and sync user data across sessions",
+        "Integrated <strong>Edamam's Recipe Search API</strong> to pull recipes matching user dietary preferences and restrictions",
+        "Built a fully responsive UI using React.js, HTML, and CSS"
+      ]
+    }
+  ],
+  "modalTags": ["React.js", "Firebase Auth", "Firebase Realtime DB", "JavaScript", "HTML / CSS", "Edamam API"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "insurance",
+  "number": "010",
+  "title": "Insurance Policy API",
+  "category": "Java · Spring Boot · REST API",
+  "image": "./images/projects/insurance-api.jpg",
+  "imagePlaceholder": "Insurance API",
+  "description": "Production-style RESTful API for full lifecycle management of insurance policies across 10+ endpoints with layered MVC architecture.",
+  "tags": ["Java", "Spring Boot", "Spring Data JPA"],
+  "github": "https://github.com/sohamkaje/Insurance-API",
+  "date": "April 2026",
+  "modalSubtitle": "Java · Spring Boot · Maven · REST API · April 2026",
+  "overview": "A production-style RESTful API built with Java 17 and Spring Boot 3.2 for full lifecycle management of insurance policies. Covers Auto, Home, Health, Life, and Business policy types across 10+ endpoints, following industry-standard layered architecture patterns.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Designed <strong>10+ RESTful endpoints</strong> supporting full CRUD operations with proper HTTP status codes and REST best practices",
+        "Applied <strong>layered MVC architecture</strong> (Controller → Service → Repository) using Spring Data JPA, constructor-based dependency injection, and <code>@Transactional</code> service methods for data consistency",
+        "Designed centralized exception handling via <strong><code>@ControllerAdvice</code></strong> with custom exceptions (<code>PolicyNotFoundException</code>, <code>DuplicatePolicyException</code>) for clean, consistent error responses",
+        "Enforced input validation using <strong>Bean Validation</strong> (<code>@Valid</code>, <code>@NotNull</code>) and integrated <strong>OpenAPI/Swagger UI</strong> via SpringDoc for interactive API documentation"
+      ]
+    }
+  ],
+  "modalTags": ["Java 17", "Spring Boot 3.2", "Spring Data JPA", "H2 Database", "Maven", "Bean Validation", "OpenAPI / Swagger UI"]
+}

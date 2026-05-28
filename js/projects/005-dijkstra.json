@@ -1,0 +1,27 @@
+{
+  "id": "dijkstra",
+  "number": "005",
+  "title": "UIC Campus Pathfinder",
+  "category": "Algorithms · Data Structures",
+  "image": "./images/projects/dijkstra-maps.jpg",
+  "imagePlaceholder": "UIC Maps",
+  "description": "Custom Dijkstra's algorithm implementation finding shortest paths between UIC buildings using OpenStreetMap data.",
+  "tags": ["C++", "Dijkstra", "OSM"],
+  "github": "https://github.com/sohamkaje",
+  "date": "Nov 2023",
+  "modalSubtitle": "Algorithms · Data Structures · C++ · Nov 2023",
+  "overview": "An efficient campus navigation system that finds the shortest path between UIC buildings using real OpenStreetMap data and Dijkstra's shortest path algorithm.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Coded an <strong>adjacency matrix</strong> to store information regarding building locations in hashmaps for O(1) time complexity",
+        "Used <strong>.osm files</strong> as a data source to parse real-world geographic data from OpenStreetMap",
+        "Implemented a custom <strong>Dijkstra shortest path algorithm</strong> optimized for campus-scale pathfinding",
+        "Used a <strong>stack data structure</strong> to display the complete shortest path from one location to another",
+        "Optimized for performance with efficient data structures and algorithm implementation"
+      ]
+    }
+  ],
+  "modalTags": ["C++", "Dijkstra's Algorithm", "OpenStreetMap", "Graph Theory", "Data Structures"]
+}

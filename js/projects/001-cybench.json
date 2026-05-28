@@ -1,0 +1,25 @@
+{
+  "id": "cybench",
+  "number": "001",
+  "title": "CyBench Optimization",
+  "category": "LLM Systems · Prompt Engineering",
+  "image": "./images/projects/cybench.jpg",
+  "imagePlaceholder": "CyBench Screenshot",
+  "description": "Improved a cybersecurity LLM benchmark, cutting token usage by ~47% via chain compression, dynamic memory, and feedback loops.",
+  "tags": ["Python", "LLM", "Prompt Eng."],
+  "github": "https://github.com/sohamkaje/CyBench-Optimized",
+  "date": "Oct – Dec 2025",
+  "modalSubtitle": "LLM Systems Engineering · Prompt Engineering · Oct – Dec 2025",
+  "overview": "CyBench is a cybersecurity benchmark designed to evaluate how well large language models reason about real-world exploitation scenarios and CTF-style tasks. I improved the efficiency and accuracy of this system through three distinct engineering efforts.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "<strong>Chain Compression:</strong> Filtered trivial agent steps and delegated them to lightweight models, reducing total AI token usage by <strong>~47%</strong> without sacrificing task quality.",
+        "<strong>Dynamic Memory:</strong> Implemented a persistent, <strong>JSON-backed</strong> memory system that injects cross-run execution context directly into LLM prompts, enabling the model to learn from prior attempts.",
+        "<strong>Feedback Loop:</strong> Logged failed actions as counterexamples and fed them back into subsequent runs, improving subtask completion rates and iteration efficiency."
+      ]
+    }
+  ],
+  "modalTags": ["Python", "LLM / GPT", "Prompt Engineering", "JSON", "Cybersecurity"]
+}

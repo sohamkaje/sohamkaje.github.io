@@ -1,0 +1,25 @@
+{
+  "id": "acm",
+  "number": "009",
+  "title": "ACM Math Tools",
+  "category": "Leadership · Open Source",
+  "image": "./images/projects/acm-math.jpg",
+  "imagePlaceholder": "ACM Math Tools",
+  "description": "Suite of mathematical tools — graphing calculators, matrix tools, and logic programs — built as SIG Math Leader at UIC's ACM chapter.",
+  "tags": ["Python", "NumPy", "C++"],
+  "github": "https://github.com/sohamkaje",
+  "date": "Jan 2024 – May 2025",
+  "modalSubtitle": "Leadership · Open Source · Jan 2024 – May 2025",
+  "overview": "As SIG Math Leader at UIC's ACM chapter (the biggest CS club at UIC), I managed a team of students and led the development of a suite of advanced mathematical tools spanning calculus, linear algebra, and discrete math.",
+  "sections": [
+    {
+      "heading": "Tools Built",
+      "bullets": [
+        "<strong>Integral & Riemann Sum Graphing Calculator</strong> — Python tool using NumPy and Matplotlib for interactive calculus visualization",
+        "<strong>Reduced Row Echelon Matrix Calculator</strong> — C++ implementation of Gaussian elimination for linear algebra operations",
+        "<strong>Discrete Math Truth Table Logic Program</strong> — Boolean expression evaluator and truth table generator"
+      ]
+    }
+  ],
+  "modalTags": ["Python", "NumPy", "Matplotlib", "C++", "Discrete Math"]
+}

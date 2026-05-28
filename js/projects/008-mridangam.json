@@ -1,0 +1,29 @@
+{
+  "id": "mridangam",
+  "number": "008",
+  "title": "Mridangam Performance Site",
+  "category": "Web Development · In Progress",
+  "image": "./images/projects/mridangam-site.jpg",
+  "imagePlaceholder": "Mridangam Site",
+  "description": "Personal website showcasing Carnatic music performances, upcoming concerts, and teaching philosophy — currently in development.",
+  "tags": ["React", "CSS", "Firebase"],
+  "github": null,
+  "date": "In Progress",
+  "modalSubtitle": "Web Development · React · In Progress",
+  "overview": "A personal website dedicated to showcasing my Carnatic music journey, performances, and teaching philosophy. Currently in active development with plans for launch in 2026.",
+  "sections": [
+    {
+      "heading": "Planned Features",
+      "bullets": [
+        "Performance gallery with video embeds and audio samples from concerts and events",
+        "Upcoming concert schedule and event calendar",
+        "Teaching philosophy and approach to Carnatic music education",
+        "Blog section for insights on mridangam techniques and Carnatic music theory",
+        "Contact form for booking inquiries and collaboration opportunities",
+        "Integration with Firebase for dynamic content management"
+      ]
+    }
+  ],
+  "modalTags": ["React", "CSS", "Firebase", "JavaScript", "Responsive Design"],
+  "inProgress": true
+}

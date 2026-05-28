@@ -15,6 +15,136 @@
     
     <!-- Custom Styles -->
     <link href="./css/main.css" rel="stylesheet">
+    <style>
+        /* ── Page centering ── */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav, section, footer {
+            width: 100%;
+            max-width: 1400px;
+            box-sizing: border-box;
+        }
+        nav {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ── Scramble animation ── */
+        .hero-name {
+            text-align: center;
+            width: 100%;
+        }
+        .name-line-first {
+            display: block;
+        }
+        .name-line-second {
+            display: block;
+            font-style: italic;
+            color: var(--accent-bright, #60a5fa);
+        }
+        .scramble-char {
+            display: inline-block;
+            min-width: 0.55em;
+            transition: color 0.06s;
+        }
+        .scramble-char.scrambling {
+            color: var(--accent, #3b82f6);
+            opacity: 0.65;
+        }
+        .name-line-second .scramble-char.scrambling {
+            color: #93c5fd;
+        }
+
+        /* ── GitHub contributions ── */
+        .contrib-wrapper {
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        .contrib-graph {
+            display: flex;
+            gap: 3px;
+            min-width: max-content;
+        }
+        .contrib-week {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .contrib-day {
+            width: 13px;
+            height: 13px;
+            border-radius: 2px;
+            background: #0d1117;
+            border: 1px solid #1a2635;
+            cursor: default;
+            transition: transform 0.15s ease;
+        }
+        .contrib-day:hover { transform: scale(1.4); z-index: 10; position: relative; }
+        .contrib-month-labels {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 5px;
+            min-width: max-content;
+        }
+        .contrib-month-label {
+            width: 13px;
+            font-size: 0.58rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted, #1e4080);
+        }
+        .contrib-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .contrib-total {
+            font-size: 0.75rem;
+            color: var(--subtle, #5a83b8);
+            letter-spacing: 0.05em;
+        }
+        .contrib-total span { color: var(--text, #ddeeff); font-weight: 500; }
+        .contrib-legend {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted, #1e4080);
+        }
+        .contrib-legend-box {
+            width: 11px; height: 11px;
+            border-radius: 2px;
+        }
+        .contrib-loading {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted, #1e4080);
+            padding: 2rem 0;
+        }
+        .contrib-tooltip {
+            position: fixed;
+            background: var(--surface2, #0c1628);
+            border: 1px solid var(--border2, #1a3155);
+            color: var(--text, #ddeeff);
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            padding: 0.35rem 0.75rem;
+            pointer-events: none;
+            z-index: 9999;
+            white-space: nowrap;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,6 +157,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#github">GitHub</a></li>
         <li><a href="#music">Music</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
@@ -35,21 +166,42 @@
 <!-- ══════════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════════ -->
-<section class="hero">
-    <div class="hero-bg-text">SK</div>
-    <div class="hero-content">
-        <div class="hero-profile-container">
-            <img src="./images/IMG_3851.jpg" alt="Soham Kaje" class="hero-profile-image" data-placeholder="Profile">
-            <div>
-                <div class="hero-tag">Open to opportunities</div>
-                <h1 class="hero-name">Soham<br><em>Kaje</em></h1>
-            </div>
-        </div>
-        <p class="hero-desc">Master's student in Computer Science at UIUC. Building at the intersection of machine learning, full-stack development, and AI systems.</p>
-        <div class="hero-links">
-            <a href="https://github.com/sohamkaje" target="_blank">GitHub ↗</a>
-            <a href="https://linkedin.com/in/soham-kaje" target="_blank">LinkedIn ↗</a>
-            <a href="mailto:kaje.soham@gmail.com">Email ↗</a>
+<section class="hero" style="align-items:center;justify-content:center;flex-direction:column;text-align:center;padding-bottom:5rem;">
+    <div class="hero-bg-text" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">SK</div>
+    <div class="hero-content" style="display:flex;flex-direction:column;align-items:center;max-width:680px;width:100%;position:relative;z-index:1;">
+
+        <!-- Profile photo -->
+        <img src="./images/IMG_3851.jpg" alt="Soham Kaje" class="hero-profile-image" data-placeholder="Profile"
+             style="margin-bottom:2rem;">
+
+        <!-- Badge -->
+        <div class="hero-tag" style="margin-bottom:1.6rem;">Open to opportunities</div>
+
+        <!-- Name — populated by js/scramble.js -->
+        <h1 class="hero-name" aria-label="Soham Kaje">
+            <span class="name-line-first"  id="name-line-1" data-scramble="Soham"></span>
+            <span class="name-line-second" id="name-line-2" data-scramble="Kaje"></span>
+        </h1>
+
+        <!-- Tagline -->
+        <p class="hero-desc" style="text-align:center;max-width:480px;margin-top:1.8rem;">
+            Master’s student in Computer Science at UIUC. Building at the intersection of machine learning, full-stack development, and AI systems.
+        </p>
+
+        <!-- Links with icons -->
+        <div class="hero-links" style="justify-content:center;margin-top:2rem;gap:2.2rem;">
+            <a href="https://github.com/sohamkaje" target="_blank" style="display:flex;align-items:center;gap:0.45rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="https://linkedin.com/in/soham-kaje" target="_blank" style="display:flex;align-items:center;gap:0.45rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="mailto:kaje.soham@gmail.com" style="display:flex;align-items:center;gap:0.45rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Email
+            </a>
         </div>
     </div>
     <div class="hero-scroll">Scroll</div>
@@ -71,7 +223,7 @@
                     <div>
                         <div class="edu-school">UIUC</div>
                         <div class="edu-degree">Professional Master's of Computer Science</div>
-                        <div class="edu-gpa">GPA 3.75 · Completing in 1 year</div>
+                        <div class="edu-gpa">GPA 3.87 · Completing in 1 year</div>
                     </div>
                     <div class="edu-date">Aug 2025<br>May 2026</div>
                 </div>
@@ -135,140 +287,8 @@
 <section id="projects">
     <div class="section-label">02 — Projects</div>
     <h2 class="section-title">Selected Work</h2>
-    <div class="projects-grid">
-
-        <div class="project-card fade-up" onclick="openModal('cybench')">
-            <img src="./images/projects/cybench.jpg" alt="CyBench Project" class="project-image" data-placeholder="CyBench Screenshot">
-            <div class="project-number">001</div>
-            <div class="project-title">CyBench Optimization</div>
-            <div class="project-category">LLM Systems · Prompt Engineering</div>
-            <p class="project-desc">Improved a cybersecurity LLM benchmark, cutting token usage by <strong style="color:var(--text)">~47%</strong> via chain compression, dynamic memory, and feedback loops.</p>
-            <div class="project-tags">
-                <span class="project-tag">Python</span><span class="project-tag">LLM</span><span class="project-tag">Prompt Eng.</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('fraud')">
-            <img src="./images/projects/fraud-detection.jpg" alt="Fraud Detection" class="project-image" data-placeholder="Fraud Detection">
-            <div class="project-number">002</div>
-            <div class="project-title">Healthcare Fraud Detection</div>
-            <div class="project-category">Machine Learning · Capstone</div>
-            <p class="project-desc">ML pipeline detecting fraudulent Medicare claims using XGBoost and SHAP for explainable, transparent AI-driven fraud scoring.</p>
-            <div class="project-tags">
-                <span class="project-tag">Python</span><span class="project-tag">XGBoost</span><span class="project-tag">SHAP</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('meals')">
-            <img src="./images/projects/meals-for-me.jpg" alt="Meals for Me" class="project-image" data-placeholder="Meals for Me">
-            <div class="project-number">003</div>
-            <div class="project-title">Meals for Me</div>
-            <div class="project-category">Full-Stack · React</div>
-            <p class="project-desc">Led a 5-member team building a recipe discovery app with Firebase auth, realtime data sync, and the Edamam recipe API.</p>
-            <div class="project-tags">
-                <span class="project-tag">React.js</span><span class="project-tag">Firebase</span><span class="project-tag">REST API</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('messenger')">
-            <img src="./images/projects/messenger-app.jpg" alt="Messenger App" class="project-image" data-placeholder="Messenger App">
-            <div class="project-number">004</div>
-            <div class="project-title">Java Messenger App</div>
-            <div class="project-category">Client-Server · Networking</div>
-            <p class="project-desc">Multi-threaded client-server messaging application with JavaFX GUI, socket programming, and real-time message delivery.</p>
-            <div class="project-tags">
-                <span class="project-tag">Java</span><span class="project-tag">JavaFX</span><span class="project-tag">Sockets</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('dijkstra')">
-            <img src="./images/projects/dijkstra-maps.jpg" alt="Dijkstra Maps" class="project-image" data-placeholder="UIC Maps">
-            <div class="project-number">005</div>
-            <div class="project-title">UIC Campus Pathfinder</div>
-            <div class="project-category">Algorithms · Data Structures</div>
-            <p class="project-desc">Custom Dijkstra's algorithm implementation finding shortest paths between UIC buildings using OpenStreetMap data.</p>
-            <div class="project-tags">
-                <span class="project-tag">C++</span><span class="project-tag">Dijkstra</span><span class="project-tag">OSM</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('archivebot')">
-            <img src="./images/projects/archive-bot.jpg" alt="Archive Bot" class="project-image" data-placeholder="Archive Bot">
-            <div class="project-number">006</div>
-            <div class="project-title">Archive Bot</div>
-            <div class="project-category">Discord Bot · Community Tool</div>
-            <p class="project-desc">Multifunctional Discord bot with API integrations (Last.FM, OpenAI), web scraping, and MongoDB for personalized user data.</p>
-            <div class="project-tags">
-                <span class="project-tag">JavaScript</span><span class="project-tag">Discord.js</span><span class="project-tag">MongoDB</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('deepblue')">
-            <img src="./images/projects/deepblue.jpg" alt="Deepblue" class="project-image" data-placeholder="Deepblue">
-            <div class="project-number">007</div>
-            <div class="project-title">Deepblue</div>
-            <div class="project-category">Hackathon · SparkHacks 2025</div>
-            <p class="project-desc">Ocean-focused full-stack web app built at SparkHacks 2025 — JavaScript and CSS with a Node.js dev server.</p>
-            <div class="project-tags">
-                <span class="project-tag">JavaScript</span><span class="project-tag">CSS</span><span class="project-tag">Node.js</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('mridangam')">
-            <img src="./images/projects/mridangam-site.jpg" alt="Mridangam Website" class="project-image" data-placeholder="Mridangam Site">
-            <div class="project-number">008</div>
-            <div class="project-title">Mridangam Performance Site</div>
-            <div class="project-category">Web Development · In Progress</div>
-            <p class="project-desc">Personal website showcasing Carnatic music performances, upcoming concerts, and teaching philosophy — currently in development.</p>
-            <div class="project-tags">
-                <span class="project-tag">React</span><span class="project-tag">CSS</span><span class="project-tag">Firebase</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('acm')">
-            <img src="./images/projects/acm-math.jpg" alt="ACM Math Tools" class="project-image" data-placeholder="ACM Math Tools">
-            <div class="project-number">009</div>
-            <div class="project-title">ACM Math Tools</div>
-            <div class="project-category">Leadership · Open Source</div>
-            <p class="project-desc">Suite of mathematical tools — graphing calculators, matrix tools, and logic programs — built as SIG Math Leader at UIC's ACM chapter.</p>
-            <div class="project-tags">
-                <span class="project-tag">Python</span><span class="project-tag">NumPy</span><span class="project-tag">C++</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('insurance')">
-            <img src="./images/projects/insurance-api.jpg" alt="Insurance API" class="project-image" data-placeholder="Insurance API">
-            <div class="project-number">010</div>
-            <div class="project-title">Insurance Policy API</div>
-            <div class="project-category">Java · Spring Boot · REST API</div>
-            <p class="project-desc">Production-style RESTful API for full lifecycle management of insurance policies across 10+ endpoints with layered MVC architecture.</p>
-            <div class="project-tags">
-                <span class="project-tag">Java</span><span class="project-tag">Spring Boot</span><span class="project-tag">Spring Data JPA</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
-        <div class="project-card fade-up" onclick="openModal('timecapsule')">
-            <img src="./images/projects/time-capsule.jpg" alt="Time Capsule Game" class="project-image" data-placeholder="Time Capsule Game">
-            <div class="project-number">011</div>
-            <div class="project-title">Time Capsule</div>
-            <div class="project-category">Game Dev · Godot 4.2 · AI Assets</div>
-            <p class="project-desc">3D first-person puzzle game where you freeze physics objects mid-air to build platforms and collect artifacts in a museum — built in Godot 4.2 with AI-generated 3D models via Meshy.</p>
-            <div class="project-tags">
-                <span class="project-tag">Godot 4.2</span><span class="project-tag">GDScript</span><span class="project-tag">Meshy AI</span>
-            </div>
-            <span class="project-open">View details →</span>
-        </div>
-
+    <div class="projects-grid" id="projects-grid">
+        <!-- Cards injected by js/projects.js -->
     </div>
 </section>
 
@@ -328,10 +348,40 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
+     GITHUB CONTRIBUTIONS
+══════════════════════════════════════════════════════════════ -->
+<section id="github">
+    <div class="section-label">04 — GitHub</div>
+    <h2 class="section-title">Contributions</h2>
+
+    <div class="contrib-loading" id="contrib-loading">Fetching contribution data…</div>
+
+    <div id="contrib-container" style="display:none;">
+        <div class="contrib-wrapper">
+            <div class="contrib-month-labels" id="contrib-months"></div>
+            <div class="contrib-graph"        id="contrib-graph"></div>
+        </div>
+        <div class="contrib-meta">
+            <div class="contrib-total" id="contrib-total"></div>
+            <div class="contrib-legend">
+                Less
+                <div class="contrib-legend-box" style="background:#0d1117;border:1px solid #1a2635;"></div>
+                <div class="contrib-legend-box" style="background:#0e3a5c;"></div>
+                <div class="contrib-legend-box" style="background:#0969a2;"></div>
+                <div class="contrib-legend-box" style="background:#1d7cbb;"></div>
+                <div class="contrib-legend-box" style="background:#3b9dd4;"></div>
+                More
+            </div>
+        </div>
+    </div>
+    <div class="contrib-tooltip" id="contrib-tooltip"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
      MUSIC
 ══════════════════════════════════════════════════════════════ -->
 <section id="music">
-    <div class="section-label">04 — Music</div>
+    <div class="section-label">05 — Music</div>
     <h2 class="section-title">Beyond the Code</h2>
     <p class="music-intro">
         Outside of software, I'm a dedicated Carnatic musician. I play the <strong style="color:var(--text)">Mridangam</strong> — a classical South Indian percussion instrument — and perform Carnatic vocal music. I've performed at concerts and events in <strong style="color:var(--text)">USA, Canada, and India</strong>, bringing the same discipline and focus I apply to engineering to my musical practice.
@@ -404,7 +454,7 @@
      CONTACT
 ══════════════════════════════════════════════════════════════ -->
 <section id="contact">
-    <div class="section-label">05 — Contact</div>
+    <div class="section-label">06 — Contact</div>
     <h2 class="section-title">Let's connect</h2>
     <div class="contact-inner fade-up">
         <p style="font-size:0.84rem; color: var(--subtle); margin-bottom: 2rem; max-width: 400px;">
@@ -440,351 +490,13 @@
     <p>Built with Tailwind CSS · GitHub Pages</p>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════════
-     MODALS
-══════════════════════════════════════════════════════════════ -->
-
-<!-- Modal: CyBench -->
-<div class="modal-overlay" id="modal-cybench">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('cybench')">Close ✕</button>
-        <div class="modal-num">Project 001</div>
-        <div class="modal-title">CyBench Optimization</div>
-        <div class="modal-cat">LLM Systems Engineering · Prompt Engineering · Oct – Dec 2025</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>CyBench is a cybersecurity benchmark designed to evaluate how well large language models reason about real-world exploitation scenarios and CTF-style tasks. I improved the efficiency and accuracy of this system through three distinct engineering efforts.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li><strong style="color:var(--text)">Chain Compression:</strong> Filtered trivial agent steps and delegated them to lightweight models, reducing total AI token usage by <strong style="color:var(--text)">~47%</strong> without sacrificing task quality.</li>
-                <li><strong style="color:var(--text)">Dynamic Memory:</strong> Implemented a persistent, <strong style="color:var(--text)">JSON-backed</strong> memory system that injects cross-run execution context directly into LLM prompts, enabling the model to learn from prior attempts.</li>
-                <li><strong style="color:var(--text)">Feedback Loop:</strong> Logged failed actions as counterexamples and fed them back into subsequent runs, improving subtask completion rates and iteration efficiency.</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Python</span><span class="modal-tag">LLM / GPT</span>
-                <span class="modal-tag">Prompt Engineering</span><span class="modal-tag">JSON</span>
-                <span class="modal-tag">Cybersecurity</span>
-            </div>
-            <a href="https://github.com/sohamkaje/CyBench-Optimized" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Fraud Detection -->
-<div class="modal-overlay" id="modal-fraud">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('fraud')">Close ✕</button>
-        <div class="modal-num">Project 002</div>
-        <div class="modal-title">Healthcare Fraud Detection</div>
-        <div class="modal-cat">Machine Learning · Capstone Project · Jan – Apr 2025</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>Built a machine learning pipeline to detect fraudulent Medicare claims by analyzing complex patterns across inpatient, outpatient, and beneficiary data. The goal was an explainable AI system that could both flag fraud and provide transparent reasoning.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Implemented anomaly detection to identify behavioral patterns indicative of healthcare insurance fraud</li>
-                <li>Developed an AI-driven fraud risk scoring system using <strong style="color:var(--text)">XGBoost</strong> for high-accuracy predictions</li>
-                <li>Integrated <strong style="color:var(--text)">SHAP</strong> for transparent, interpretable fraud detection and explainable AI output</li>
-                <li>Reduced operational costs and improved resource allocation by enabling targeted investigation of high-risk claims</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Python</span><span class="modal-tag">XGBoost</span>
-                <span class="modal-tag">SHAP</span><span class="modal-tag">Scikit-learn</span>
-                <span class="modal-tag">Pandas</span><span class="modal-tag">Anomaly Detection</span>
-            </div>
-            <a href="https://github.com/sohamkaje/Healthcare-Insurance-Fraud-Detection" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Meals for Me -->
-<div class="modal-overlay" id="modal-meals">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('meals')">Close ✕</button>
-        <div class="modal-num">Project 003</div>
-        <div class="modal-title">Meals for Me</div>
-        <div class="modal-cat">Hackathon · Full-Stack · React.js · Feb 2024</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A responsive recipe discovery application that helps users find meals based on their personal preferences. I led a 5-member team through the full development lifecycle, from planning and architecture to deployment.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Led a team of 5 developers, coordinating feature ownership and code review</li>
-                <li>Implemented <strong style="color:var(--text)">Google Firebase Authentication</strong> for secure sign-in and user account management</li>
-                <li>Used <strong style="color:var(--text)">Firebase Realtime Database</strong> to save, store, and sync user data across sessions</li>
-                <li>Integrated <strong style="color:var(--text)">Edamam's Recipe Search API</strong> to pull recipes matching user dietary preferences and restrictions</li>
-                <li>Built a fully responsive UI using React.js, HTML, and CSS</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">React.js</span><span class="modal-tag">Firebase Auth</span>
-                <span class="modal-tag">Firebase Realtime DB</span><span class="modal-tag">JavaScript</span>
-                <span class="modal-tag">HTML / CSS</span><span class="modal-tag">Edamam API</span>
-            </div>
-            <a href="https://github.com/sohamkaje/Meals-4-Me" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Messenger App -->
-<div class="modal-overlay" id="modal-messenger">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('messenger')">Close ✕</button>
-        <div class="modal-num">Project 004</div>
-        <div class="modal-title">Java Messenger App</div>
-        <div class="modal-cat">Client-Server Architecture · Networking · Spring 2024</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A real-time messaging application built with Java featuring a client-server architecture. Implemented socket programming for network communication and JavaFX for an intuitive graphical user interface.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Designed and implemented a multi-threaded server capable of handling concurrent client connections</li>
-                <li>Built a JavaFX-based GUI client with real-time message updates and user-friendly interface</li>
-                <li>Implemented TCP socket programming for reliable message delivery between clients</li>
-                <li>Created a custom message protocol for client-server communication</li>
-                <li>Added features including user authentication, message history, and connection status indicators</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Java</span><span class="modal-tag">JavaFX</span>
-                <span class="modal-tag">Socket Programming</span><span class="modal-tag">Multi-threading</span>
-                <span class="modal-tag">TCP/IP</span>
-            </div>
-            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Dijkstra Maps -->
-<div class="modal-overlay" id="modal-dijkstra">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('dijkstra')">Close ✕</button>
-        <div class="modal-num">Project 005</div>
-        <div class="modal-title">UIC Campus Pathfinder</div>
-        <div class="modal-cat">Algorithms · Data Structures · C++ · Nov 2023</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>An efficient campus navigation system that finds the shortest path between UIC buildings using real OpenStreetMap data and Dijkstra's shortest path algorithm.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Coded an <strong style="color:var(--text)">adjacency matrix</strong> to store information regarding building locations in hashmaps for O(1) time complexity</li>
-                <li>Used <strong style="color:var(--text)">.osm files</strong> as a data source to parse real-world geographic data from OpenStreetMap</li>
-                <li>Implemented a custom <strong style="color:var(--text)">Dijkstra shortest path algorithm</strong> optimized for campus-scale pathfinding</li>
-                <li>Used a <strong style="color:var(--text)">stack data structure</strong> to display the complete shortest path from one location to another</li>
-                <li>Optimized for performance with efficient data structures and algorithm implementation</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">C++</span><span class="modal-tag">Dijkstra's Algorithm</span>
-                <span class="modal-tag">OpenStreetMap</span><span class="modal-tag">Graph Theory</span>
-                <span class="modal-tag">Data Structures</span>
-            </div>
-            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Archive Bot -->
-<div class="modal-overlay" id="modal-archivebot">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('archivebot')">Close ✕</button>
-        <div class="modal-num">Project 006</div>
-        <div class="modal-title">Archive Bot</div>
-        <div class="modal-cat">Discord Bot · Community Tool · May – Aug 2023</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A multifunctional Discord bot built with Discord.js v14 for the Laroi community, providing a modular command system with API integrations, web scraping, and persistent data storage.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Developed a multifunctional Discord bot using the <strong style="color:var(--text)">Discord.js library</strong>, enhancing server functionality and user experience</li>
-                <li>Integrated external APIs including <strong style="color:var(--text)">Last.FM</strong> and <strong style="color:var(--text)">OpenAI</strong> to provide real-time music data and AI-powered features</li>
-                <li>Implemented <strong style="color:var(--text)">web scraping</strong> using Axios from npm to fetch and display dynamic content</li>
-                <li>Utilized <strong style="color:var(--text)">MongoDB</strong> to store user-specific data, enabling personalized features and preferences</li>
-                <li>Built a modular command system with custom schemas for clean, maintainable code architecture</li>
-                <li>Maintained across 80+ commits with continuous feature additions based on community feedback</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">JavaScript</span><span class="modal-tag">Discord.js v14</span>
-                <span class="modal-tag">MongoDB</span><span class="modal-tag">Last.FM API</span>
-                <span class="modal-tag">OpenAI API</span><span class="modal-tag">Axios</span>
-                <span class="modal-tag">Node.js</span>
-            </div>
-            <a href="https://github.com/sohamkaje/archive-bot" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Deepblue -->
-<div class="modal-overlay" id="modal-deepblue">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('deepblue')">Close ✕</button>
-        <div class="modal-num">Project 007</div>
-        <div class="modal-title">Deepblue</div>
-        <div class="modal-cat">Hackathon · Full-Stack · SparkHacks 2025 · Feb 2025</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>An ocean-focused web application built at SparkHacks 2025. Deepblue is built with JavaScript and CSS, with a Node.js backend, centered around ocean awareness and interactive data visualization.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Built a full-stack web application from scratch within a hackathon timeframe</li>
-                <li>Designed and developed the frontend using JavaScript and CSS with responsive layouts</li>
-                <li>Set up a Node.js dev server with npm for local development and rapid iteration</li>
-                <li>Focused on ocean-themed UI with data-driven content presentation</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">JavaScript</span><span class="modal-tag">CSS</span>
-                <span class="modal-tag">HTML</span><span class="modal-tag">Node.js</span><span class="modal-tag">npm</span>
-            </div>
-            <a href="https://github.com/sohamkaje/Deepblue" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Mridangam Website -->
-<div class="modal-overlay" id="modal-mridangam">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('mridangam')">Close ✕</button>
-        <div class="modal-num">Project 008</div>
-        <div class="modal-title">Mridangam Performance Website</div>
-        <div class="modal-cat">Web Development · React · In Progress</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A personal website dedicated to showcasing my Carnatic music journey, performances, and teaching philosophy. Currently in active development with plans for launch in 2026.</p>
-            <div class="modal-section-head">Planned Features</div>
-            <ul>
-                <li>Performance gallery with video embeds and audio samples from concerts and events</li>
-                <li>Upcoming concert schedule and event calendar</li>
-                <li>Teaching philosophy and approach to Carnatic music education</li>
-                <li>Blog section for insights on mridangam techniques and Carnatic music theory</li>
-                <li>Contact form for booking inquiries and collaboration opportunities</li>
-                <li>Integration with Firebase for dynamic content management</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">React</span><span class="modal-tag">CSS</span>
-                <span class="modal-tag">Firebase</span><span class="modal-tag">JavaScript</span>
-                <span class="modal-tag">Responsive Design</span>
-            </div>
-            <div style="padding: 1rem; background: var(--surface2); border-left: 3px solid var(--accent); margin-top: 1.5rem;">
-                <p style="font-size: 0.75rem; color: var(--subtle); margin: 0;">🚧 This project is currently in development. Check back soon for updates!</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: ACM Math Tools -->
-<div class="modal-overlay" id="modal-acm">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('acm')">Close ✕</button>
-        <div class="modal-num">Project 009</div>
-        <div class="modal-title">ACM Math Tools</div>
-        <div class="modal-cat">Leadership · Open Source · Jan 2024 – May 2025</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>As SIG Math Leader at UIC's ACM chapter (the biggest CS club at UIC), I managed a team of students and led the development of a suite of advanced mathematical tools spanning calculus, linear algebra, and discrete math.</p>
-            <div class="modal-section-head">Tools Built</div>
-            <ul>
-                <li><strong style="color:var(--text)">Integral & Riemann Sum Graphing Calculator</strong> — Python tool using NumPy and Matplotlib for interactive calculus visualization</li>
-                <li><strong style="color:var(--text)">Reduced Row Echelon Matrix Calculator</strong> — C++ implementation of Gaussian elimination for linear algebra operations</li>
-                <li><strong style="color:var(--text)">Discrete Math Truth Table Logic Program</strong> — Boolean expression evaluator and truth table generator</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Python</span><span class="modal-tag">NumPy</span>
-                <span class="modal-tag">Matplotlib</span><span class="modal-tag">C++</span>
-                <span class="modal-tag">Discrete Math</span>
-            </div>
-            <a href="https://github.com/sohamkaje" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-<!-- Modal: Insurance Policy Management API -->
-<div class="modal-overlay" id="modal-insurance">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('insurance')">Close ✕</button>
-        <div class="modal-num">Project 010</div>
-        <div class="modal-title">Insurance Policy Management API</div>
-        <div class="modal-cat">Java · Spring Boot · Maven · REST API · April 2026</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A production-style RESTful API built with Java 17 and Spring Boot 3.2 for full lifecycle management of insurance policies. Covers Auto, Home, Health, Life, and Business policy types across 10+ endpoints, following industry-standard layered architecture patterns.</p>
-            <div class="modal-section-head">What I Built</div>
-            <ul>
-                <li>Designed <strong style="color:var(--text)">10+ RESTful endpoints</strong> supporting full CRUD operations with proper HTTP status codes and REST best practices</li>
-                <li>Applied <strong style="color:var(--text)">layered MVC architecture</strong> (Controller → Service → Repository) using Spring Data JPA, constructor-based dependency injection, and <code>@Transactional</code> service methods for data consistency</li>
-                <li>Designed centralized exception handling via <strong style="color:var(--text)"><code>@ControllerAdvice</code></strong> with custom exceptions (<code>PolicyNotFoundException</code>, <code>DuplicatePolicyException</code>) for clean, consistent error responses</li>
-                <li>Enforced input validation using <strong style="color:var(--text)">Bean Validation</strong> (<code>@Valid</code>, <code>@NotNull</code>) and integrated <strong style="color:var(--text)">OpenAPI/Swagger UI</strong> via SpringDoc for interactive API documentation</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Java 17</span><span class="modal-tag">Spring Boot 3.2</span>
-                <span class="modal-tag">Spring Data JPA</span><span class="modal-tag">H2 Database</span>
-                <span class="modal-tag">Maven</span><span class="modal-tag">Bean Validation</span>
-                <span class="modal-tag">OpenAPI / Swagger UI</span>
-            </div>
-            <a href="https://github.com/sohamkaje/Insurance-API" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal: Time Capsule -->
-<div class="modal-overlay" id="modal-timecapsule">
-    <div class="modal">
-        <button class="modal-close" onclick="closeModal('timecapsule')">Close ✕</button>
-        <div class="modal-num">Project 011</div>
-        <div class="modal-title">Time Capsule</div>
-        <div class="modal-cat">3D Puzzle Game · Godot 4.2 · GDScript · May 2026</div>
-        <div class="modal-divider"></div>
-        <div class="modal-body">
-            <div class="modal-section-head">Overview</div>
-            <p>A 3D first-person puzzle platformer built in Godot 4.2 for a graduate IoT & Game Dev course. Players explore a museum and must collect 5 artifacts within a 3-minute time limit, using a freeze ray mechanic to suspend physics objects mid-air and construct makeshift platforms to reach otherwise inaccessible areas.</p>
-            <div class="modal-section-head">Core Mechanics</div>
-            <ul>
-                <li><strong style="color:var(--text)">Freeze Ray System:</strong> Raycast-based mechanic that suspends RigidBody3D objects in mid-air for 10 seconds — up to 3 active freeze charges at a time, with per-object countdown timers and automatic unfreeze logic written in GDScript</li>
-                <li><strong style="color:var(--text)">First-Person Controller:</strong> Full WASD movement, mouse-look with clamped vertical rotation, jump with gravity, and smooth velocity falloff</li>
-                <li><strong style="color:var(--text)">Game State Management:</strong> Dedicated GameManager node handles 3-minute countdown, win/lose conditions, UI signals, and scene tree pause on game end</li>
-                <li><strong style="color:var(--text)">HUD System:</strong> Live timer with color-change warnings, freeze charge counter, artifact progress tracker, crosshair, and distinct win/lose overlay screens</li>
-                <li><strong style="color:var(--text)">AI-Generated 3D Assets:</strong> Museum artifacts and environment props created with Meshy AI (text-to-3D), exported as <code style="color:var(--accent-bright)">.glb</code> and imported directly into Godot</li>
-            </ul>
-            <div class="modal-section-head">Architecture</div>
-            <ul>
-                <li>7 GDScript files with clean separation: player controller, artifact logic, freeze orb pickups, freezable physics objects, game manager, UI manager, and menu</li>
-                <li>6 scene files (<code style="color:var(--accent-bright)">.tscn</code>) for player, artifact, freeze orb, physics object, main level, and HUD</li>
-                <li>Collision layer system — players on layer 1, freezable objects on layer 2; raycast mask scoped to layer 2 for precise object targeting</li>
-            </ul>
-            <div class="modal-section-head">Technologies</div>
-            <div class="modal-tags">
-                <span class="modal-tag">Godot 4.2</span>
-                <span class="modal-tag">GDScript</span>
-                <span class="modal-tag">3D / RigidBody3D</span>
-                <span class="modal-tag">RayCast3D</span>
-                <span class="modal-tag">Meshy AI</span>
-                <span class="modal-tag">.glb / 3D Models</span>
-                <span class="modal-tag">Game State Machine</span>
-            </div>
-            <a href="https://github.com/sohamkaje/time-capsule" target="_blank" class="modal-link">View on GitHub ↗</a>
-        </div>
-    </div>
-</div>
-
+<!-- Modals injected by js/projects.js -->
+<div id="modals-container"></div>
 
 <!-- JavaScript Files -->
+<script src="./js/scramble.js"></script>
+<script src="./js/github.js"></script>
+<script src="./js/projects.js"></script>
 <script src="./js/modal.js"></script>
 <script src="./js/animations.js"></script>
 <script src="./js/placeholders.js"></script>

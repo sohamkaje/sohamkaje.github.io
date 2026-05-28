@@ -1,0 +1,27 @@
+{
+  "id": "messenger",
+  "number": "004",
+  "title": "Java Messenger App",
+  "category": "Client-Server · Networking",
+  "image": "./images/projects/messenger-app.jpg",
+  "imagePlaceholder": "Messenger App",
+  "description": "Multi-threaded client-server messaging application with JavaFX GUI, socket programming, and real-time message delivery.",
+  "tags": ["Java", "JavaFX", "Sockets"],
+  "github": "https://github.com/sohamkaje",
+  "date": "Spring 2024",
+  "modalSubtitle": "Client-Server Architecture · Networking · Spring 2024",
+  "overview": "A real-time messaging application built with Java featuring a client-server architecture. Implemented socket programming for network communication and JavaFX for an intuitive graphical user interface.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Designed and implemented a multi-threaded server capable of handling concurrent client connections",
+        "Built a JavaFX-based GUI client with real-time message updates and user-friendly interface",
+        "Implemented TCP socket programming for reliable message delivery between clients",
+        "Created a custom message protocol for client-server communication",
+        "Added features including user authentication, message history, and connection status indicators"
+      ]
+    }
+  ],
+  "modalTags": ["Java", "JavaFX", "Socket Programming", "Multi-threading", "TCP/IP"]
+}

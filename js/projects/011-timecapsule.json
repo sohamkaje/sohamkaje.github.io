@@ -1,0 +1,35 @@
+{
+  "id": "timecapsule",
+  "number": "011",
+  "title": "Time Capsule",
+  "category": "Game Dev · Godot 4.2 · AI Assets",
+  "image": "./images/projects/time-capsule.jpg",
+  "imagePlaceholder": "Time Capsule Game",
+  "description": "3D first-person puzzle game where you freeze physics objects mid-air to build platforms and collect artifacts in a museum — built in Godot 4.2 with AI-generated 3D models via Meshy.",
+  "tags": ["Godot 4.2", "GDScript", "Meshy AI"],
+  "github": "https://github.com/sohamkaje/time-capsule",
+  "date": "May 2026",
+  "modalSubtitle": "3D Puzzle Game · Godot 4.2 · GDScript · May 2026",
+  "overview": "A 3D first-person puzzle platformer built in Godot 4.2 for a graduate IoT & Game Dev course. Players explore a museum and must collect 5 artifacts within a 3-minute time limit, using a freeze ray mechanic to suspend physics objects mid-air and construct makeshift platforms to reach otherwise inaccessible areas.",
+  "sections": [
+    {
+      "heading": "Core Mechanics",
+      "bullets": [
+        "<strong>Freeze Ray System:</strong> Raycast-based mechanic that suspends RigidBody3D objects in mid-air for 10 seconds — up to 3 active freeze charges at a time, with per-object countdown timers and automatic unfreeze logic written in GDScript",
+        "<strong>First-Person Controller:</strong> Full WASD movement, mouse-look with clamped vertical rotation, jump with gravity, and smooth velocity falloff",
+        "<strong>Game State Management:</strong> Dedicated GameManager node handles 3-minute countdown, win/lose conditions, UI signals, and scene tree pause on game end",
+        "<strong>HUD System:</strong> Live timer with color-change warnings, freeze charge counter, artifact progress tracker, crosshair, and distinct win/lose overlay screens",
+        "<strong>AI-Generated 3D Assets:</strong> Museum artifacts and environment props created with Meshy AI (text-to-3D), exported as <code>.glb</code> and imported directly into Godot"
+      ]
+    },
+    {
+      "heading": "Architecture",
+      "bullets": [
+        "7 GDScript files with clean separation: player controller, artifact logic, freeze orb pickups, freezable physics objects, game manager, UI manager, and menu",
+        "6 scene files (<code>.tscn</code>) for player, artifact, freeze orb, physics object, main level, and HUD",
+        "Collision layer system — players on layer 1, freezable objects on layer 2; raycast mask scoped to layer 2 for precise object targeting"
+      ]
+    }
+  ],
+  "modalTags": ["Godot 4.2", "GDScript", "3D / RigidBody3D", "RayCast3D", "Meshy AI", ".glb / 3D Models", "Game State Machine"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "deepblue",
+  "number": "007",
+  "title": "Deepblue",
+  "category": "Hackathon · SparkHacks 2025",
+  "image": "./images/projects/deepblue.jpg",
+  "imagePlaceholder": "Deepblue",
+  "description": "Ocean-focused full-stack web app built at SparkHacks 2025 — JavaScript and CSS with a Node.js dev server.",
+  "tags": ["JavaScript", "CSS", "Node.js"],
+  "github": "https://github.com/sohamkaje/Deepblue",
+  "date": "Feb 2025",
+  "modalSubtitle": "Hackathon · Full-Stack · SparkHacks 2025 · Feb 2025",
+  "overview": "An ocean-focused web application built at SparkHacks 2025. Deepblue is built with JavaScript and CSS, with a Node.js backend, centered around ocean awareness and interactive data visualization.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Built a full-stack web application from scratch within a hackathon timeframe",
+        "Designed and developed the frontend using JavaScript and CSS with responsive layouts",
+        "Set up a Node.js dev server with npm for local development and rapid iteration",
+        "Focused on ocean-themed UI with data-driven content presentation"
+      ]
+    }
+  ],
+  "modalTags": ["JavaScript", "CSS", "HTML", "Node.js", "npm"]
+}

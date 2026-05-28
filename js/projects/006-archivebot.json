@@ -1,0 +1,28 @@
+{
+  "id": "archivebot",
+  "number": "006",
+  "title": "Archive Bot",
+  "category": "Discord Bot · Community Tool",
+  "image": "./images/projects/archive-bot.jpg",
+  "imagePlaceholder": "Archive Bot",
+  "description": "Multifunctional Discord bot with API integrations (Last.FM, OpenAI), web scraping, and MongoDB for personalized user data.",
+  "tags": ["JavaScript", "Discord.js", "MongoDB"],
+  "github": "https://github.com/sohamkaje/archive-bot",
+  "date": "May – Aug 2023",
+  "modalSubtitle": "Discord Bot · Community Tool · May – Aug 2023",
+  "overview": "A multifunctional Discord bot built with Discord.js v14 for the Laroi community, providing a modular command system with API integrations, web scraping, and persistent data storage.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Developed a multifunctional Discord bot using the <strong>Discord.js library</strong>, enhancing server functionality and user experience",
+        "Integrated external APIs including <strong>Last.FM</strong> and <strong>OpenAI</strong> to provide real-time music data and AI-powered features",
+        "Implemented <strong>web scraping</strong> using Axios from npm to fetch and display dynamic content",
+        "Utilized <strong>MongoDB</strong> to store user-specific data, enabling personalized features and preferences",
+        "Built a modular command system with custom schemas for clean, maintainable code architecture",
+        "Maintained across 80+ commits with continuous feature additions based on community feedback"
+      ]
+    }
+  ],
+  "modalTags": ["JavaScript", "Discord.js v14", "MongoDB", "Last.FM API", "OpenAI API", "Axios", "Node.js"]
+}

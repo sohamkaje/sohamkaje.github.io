@@ -1,0 +1,26 @@
+{
+  "id": "fraud",
+  "number": "002",
+  "title": "Healthcare Fraud Detection",
+  "category": "Machine Learning · Capstone",
+  "image": "./images/projects/fraud-detection.jpg",
+  "imagePlaceholder": "Fraud Detection",
+  "description": "ML pipeline detecting fraudulent Medicare claims using XGBoost and SHAP for explainable, transparent AI-driven fraud scoring.",
+  "tags": ["Python", "XGBoost", "SHAP"],
+  "github": "https://github.com/sohamkaje/Healthcare-Insurance-Fraud-Detection",
+  "date": "Jan – Apr 2025",
+  "modalSubtitle": "Machine Learning · Capstone Project · Jan – Apr 2025",
+  "overview": "Built a machine learning pipeline to detect fraudulent Medicare claims by analyzing complex patterns across inpatient, outpatient, and beneficiary data. The goal was an explainable AI system that could both flag fraud and provide transparent reasoning.",
+  "sections": [
+    {
+      "heading": "What I Built",
+      "bullets": [
+        "Implemented anomaly detection to identify behavioral patterns indicative of healthcare insurance fraud",
+        "Developed an AI-driven fraud risk scoring system using <strong>XGBoost</strong> for high-accuracy predictions",
+        "Integrated <strong>SHAP</strong> for transparent, interpretable fraud detection and explainable AI output",
+        "Reduced operational costs and improved resource allocation by enabling targeted investigation of high-risk claims"
+      ]
+    }
+  ],
+  "modalTags": ["Python", "XGBoost", "SHAP", "Scikit-learn", "Pandas", "Anomaly Detection"]
+}
