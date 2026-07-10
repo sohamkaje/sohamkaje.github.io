@@ -1,0 +1,35 @@
+{
+  "id": "travel-mapper",
+  "number": "013",
+  "title": "Travel Mapper",
+  "category": "Full Stack · 3D Maps · In Progress",
+  "image": "./images/projects/travel-mapper.jpg",
+  "imagePlaceholder": "Travel Mapper",
+  "description": "Free, unlimited travel route animator inspired by mult.dev — pick locations worldwide, choose transport modes, and export a 3D Cesium animation of your journey.",
+  "tags": ["React", "FastAPI", "Cesium"],
+  "github": "https://github.com/sohamkaje/Travel-Mapper",
+  "date": "In Progress",
+  "modalSubtitle": "React · FastAPI · Cesium · In Progress",
+  "overview": "A full-stack application to visualize travel routes as 3D animations — inspired by mult.dev but free with unlimited entries. Born from a hiking trip through the Southwest, it lets users select locations around the world, choose a mode of transport for each leg, and export a cinematic 3D map animation of the full journey.",
+  "sections": [
+    {
+      "heading": "What It Does",
+      "bullets": [
+        "Add unlimited stops anywhere in the world and assign a transport mode (car, plane, train, etc.) to each leg",
+        "Preview routes on an interactive <strong>Cesium</strong> 3D globe with real geographic context",
+        "Export a 3D animation of the full trip path — a shareable visual story of where you've been or plan to go",
+        "Designed as a free alternative to paid travel-animation tools with no entry limits"
+      ]
+    },
+    {
+      "heading": "Technical Stack",
+      "bullets": [
+        "<strong>Frontend:</strong> React + Vite with Cesium for 3D globe rendering and route visualization",
+        "<strong>Backend:</strong> FastAPI (Python) serving route data, transport logic, and export endpoints",
+        "Monorepo structure with separate <code>frontend/</code> and <code>backend/</code> directories"
+      ]
+    }
+  ],
+  "modalTags": ["React", "Vite", "TypeScript", "Cesium", "FastAPI", "Python", "3D Maps"],
+  "inProgress": true
+}

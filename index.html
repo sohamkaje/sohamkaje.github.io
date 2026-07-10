@@ -18,14 +18,14 @@
     <style>
         /* ── Page centering ── */
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: block;
         }
         nav, section, footer {
             width: 100%;
             max-width: 1400px;
             box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
         }
         nav {
             position: fixed;
@@ -166,13 +166,12 @@
 <!-- ══════════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════════ -->
-<section class="hero" style="align-items:center;justify-content:center;flex-direction:column;text-align:center;padding-bottom:5rem;">
-    <div class="hero-bg-text" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">SK</div>
-    <div class="hero-content" style="display:flex;flex-direction:column;align-items:center;max-width:680px;width:100%;position:relative;z-index:1;">
+<section class="hero">
+    <div class="hero-bg-text">SK</div>
+    <div class="hero-content">
 
         <!-- Profile photo -->
-        <img src="./images/IMG_3851.jpg" alt="Soham Kaje" class="hero-profile-image" data-placeholder="Profile"
-             style="margin-bottom:2rem;">
+        <img src="./images/IMG_3851.jpg" alt="Soham Kaje" class="hero-profile-image" data-placeholder="Profile">
 
         <!-- Badge -->
         <div class="hero-tag" style="margin-bottom:1.6rem;">Open to opportunities</div>
@@ -184,12 +183,12 @@
         </h1>
 
         <!-- Tagline -->
-        <p class="hero-desc" style="text-align:center;max-width:480px;margin-top:1.8rem;">
+        <p class="hero-desc">
             Master’s student in Computer Science at UIUC. Building at the intersection of machine learning, full-stack development, and AI systems.
         </p>
 
         <!-- Links with icons -->
-        <div class="hero-links" style="justify-content:center;margin-top:2rem;gap:2.2rem;">
+        <div class="hero-links">
             <a href="https://github.com/sohamkaje" target="_blank" style="display:flex;align-items:center;gap:0.45rem;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
                 GitHub
@@ -204,7 +203,6 @@
             </a>
         </div>
     </div>
-    <div class="hero-scroll">Scroll</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════

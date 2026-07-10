@@ -1,0 +1,43 @@
+{
+  "id": "havyaka",
+  "number": "012",
+  "title": "Havyaka Convention 2026",
+  "category": "iOS · SwiftUI · App Store",
+  "image": "./images/projects/havyaka.jpg",
+  "imagePlaceholder": "Havyaka Convention App",
+  "description": "Official iOS companion app for the HAA 21st Biennial Convention — deployed and live on the Apple App Store. Schedule, venue map, attendee photo gallery, and registration check-in with offline-first design.",
+  "tags": ["SwiftUI", "App Store", "PHP"],
+  "github": "https://github.com/sohamkaje/havyaka-app-iOS",
+  "date": "Mar – Jul 2026",
+  "sortDate": "2026-07",
+  "modalSubtitle": "SwiftUI · iOS 17+ · App Store · Mar – Jul 2026",
+  "overview": "The official mobile app for the Havyaka Association of the Americas (HAA) 21st Biennial Convention (July 3–5, 2026 · Rosary College Prep · Aurora, Illinois). Built with SwiftUI for iPhone and published to the Apple App Store, it gives attendees a single place for the full program, venue map, convention info, shared photo gallery, and account tools — designed for use on the convention floor, in hotels, and throughout the weekend.",
+  "sections": [
+    {
+      "heading": "App Features",
+      "bullets": [
+        "<strong>5-tab architecture:</strong> Home (countdown & shortcuts), Schedule (4-day expandable program), Map (Apple Maps with venue/hotel/food pins), Photos (shared attendee gallery), and More (info + account)",
+        "<strong>Account & check-in:</strong> Email + 5-digit code auth linked to convention registration; profile saved locally; one-tap check-in on arrival",
+        "<strong>Photo gallery:</strong> Upload and browse attendee photos/videos via PHP API with files stored on Cloudflare R2 (10 photos, 2 videos per user; 45 MB max per file)",
+        "<strong>Offline-first:</strong> Schedule, map, and convention info work without a connection; network banner shown only on Account and Photos tabs when offline"
+      ]
+    },
+    {
+      "heading": "Deployment",
+      "bullets": [
+        "Fully built, deployed, and submitted to the <strong>Apple App Store</strong> — available for attendees to download on iPhone (iOS 17+)",
+        "Live backend on Bluehost at <code>havyak.org/api</code> with production auth and photo upload flows",
+        "Convention content (schedule, map pins, FAQ) bundled in <code>ConventionModels.swift</code> for easy updates across future events"
+      ]
+    },
+    {
+      "heading": "Technical Stack",
+      "bullets": [
+        "SwiftUI front end with custom design system (charcoal, orange, gold, cream palette; Georgia serif + system rounded typography)",
+        "<code>AuthViewModel</code>, <code>RegistrationAPI</code>, and <code>PhotosAPI</code> service layer talking to <code>havyak.org/api</code>",
+        "PHP backend on Bluehost (<code>auth.php</code>, <code>photos.php</code>) with MySQL registration data and Cloudflare R2 for media storage"
+      ]
+    }
+  ],
+  "modalTags": ["SwiftUI", "iOS 17+", "App Store", "Xcode 15+", "PHP", "MySQL", "Cloudflare R2", "Apple Maps", "Offline-First"]
+}
