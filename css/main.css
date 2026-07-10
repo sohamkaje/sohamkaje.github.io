@@ -667,6 +667,26 @@ section.hero {
     margin-bottom: 0.45rem;
 }
 
+.exp-content ul li strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.exp-content ul ul {
+    list-style: none;
+    margin-top: 0.45rem;
+}
+
+.exp-content ul ul li {
+    font-size: 0.74rem;
+    margin-bottom: 0.35rem;
+}
+
+.exp-content ul ul li::before {
+    content: '◦';
+    color: var(--muted);
+}
+
 .exp-content ul li::before { 
     content: '—'; 
     position: absolute; 
